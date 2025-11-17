@@ -6,7 +6,7 @@ const ImageZoom = ({ src, alt }) => {
   return (
     <>
       <div
-        className="cursor-zoom-in relative overflow-hidden"
+        className="cursor-zoom-in relative overflow-hidden rounded-lg"
         onClick={() => setIsZoomed(true)}
       >
         <img
@@ -21,22 +21,27 @@ const ImageZoom = ({ src, alt }) => {
 
       {isZoomed && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 animate-fade-in cursor-zoom-out"
           onClick={() => setIsZoomed(false)}
         >
           <button
-            className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-300"
-            onClick={() => setIsZoomed(false)}
+            className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-300 z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsZoomed(false)
+            }}
             aria-label="Cerrar"
           >
             <span className="material-symbols-outlined text-white text-3xl">close</span>
           </button>
-          <img
-            src={src}
-            alt={alt}
-            className="max-w-full max-h-full object-contain animate-scale-in"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img
+              src={src}
+              alt={alt}
+              className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain animate-scale-in rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
         </div>
       )}
     </>
