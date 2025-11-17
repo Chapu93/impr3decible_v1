@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useToast } from '../context/ToastContext'
 
 const Quote = () => {
+  const { showToast } = useToast()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -8,7 +10,7 @@ const Quote = () => {
     finish: 'Estándar',
     message: '',
   })
-
+  const [selectedFiles, setSelectedFiles] = useState([])
   const [submitted, setSubmitted] = useState(false)
 
   const handleInputChange = (e) => {
@@ -19,9 +21,39 @@ const Quote = () => {
     }))
   }
 
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files)
+    const validFiles = files.filter(file => {
+      const validExtensions = ['.stl', '.obj', '.3mf', '.step', '.stp']
+      const fileExtension = file.name.toLowerCase().substring(file.name.lastIndexOf('.'))
+      const isValidSize = file.size <= 50 * 1024 * 1024 // 50MB
+      
+      if (!validExtensions.includes(fileExtension)) {
+        showToast(`${file.name}: Formato no válido. Use STL, OBJ, 3MF o STEP`, 'info')
+        return false
+      }
+      if (!isValidSize) {
+        showToast(`${file.name}: El archivo es muy grande (máx 50MB)`, 'info')
+        return false
+      }
+      return true
+    })
+    
+    setSelectedFiles(prev => [...prev, ...validFiles])
+    if (validFiles.length > 0) {
+      showToast(`${validFiles.length} archivo(s) agregado(s)`, 'success')
+    }
+  }
+
+  const removeFile = (index) => {
+    setSelectedFiles(prev => prev.filter((_, i) => i !== index))
+    showToast('Archivo eliminado', 'info')
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     // Aquí iría la lógica para enviar la cotización
+    console.log('Archivos a enviar:', selectedFiles)
     setSubmitted(true)
   }
 
@@ -39,6 +71,7 @@ const Quote = () => {
           <button
             onClick={() => {
               setSubmitted(false)
+              setSelectedFiles([])
               setFormData({
                 name: '',
                 email: '',
@@ -87,16 +120,60 @@ const Quote = () => {
                         className="relative cursor-pointer bg-surface-light dark:bg-surface-dark rounded-md font-medium text-primary hover:text-orange-600 focus-within:outline-none"
                         htmlFor="file-upload"
                       >
-                        <span>Selecciona un archivo</span>
-                        <input className="sr-only" id="file-upload" name="file-upload" type="file" />
+                        <span>Selecciona archivos</span>
+                        <input 
+                          className="sr-only" 
+                          id="file-upload" 
+                          name="file-upload" 
+                          type="file"
+                          accept=".stl,.obj,.3mf,.step,.stp"
+                          multiple
+                          onChange={handleFileChange}
+                        />
                       </label>
-                      <p className="pl-1">o arrástralo aquí</p>
+                      <p className="pl-1">o arrástralos aquí</p>
                     </div>
                     <p className="text-xs text-text-muted-light dark:text-text-muted-dark">
-                      STL, OBJ, 3MF (hasta 50MB)
+                      STL, OBJ, 3MF, STEP (hasta 50MB por archivo)
                     </p>
                   </div>
                 </div>
+                
+                {selectedFiles.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    <p className="text-sm font-medium text-text-light dark:text-text-dark">
+                      Archivos seleccionados ({selectedFiles.length}):
+                    </p>
+                    {selectedFiles.map((file, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3"
+                      >
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <span className="material-symbols-outlined text-primary text-xl">
+                            insert_drive_file
+                          </span>
+                          <span className="text-sm text-text-light dark:text-text-dark truncate">
+                            {file.name}
+                          </span>
+                          <span className="text-xs text-text-muted-light dark:text-text-muted-dark">
+                            ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="ml-2 p-1 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
+                          aria-label="Eliminar archivo"
+                        >
+                          <span className="material-symbols-outlined text-red-500 text-xl">
+                            delete
+                          </span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               <div>
                 <label
