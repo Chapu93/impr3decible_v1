@@ -13,6 +13,7 @@ import SkipToContent from './components/SkipToContent'
 import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
+import ProjectDetail from './pages/ProjectDetail'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Quote from './pages/Quote'
@@ -57,6 +58,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/productos" element={<Products />} />
                 <Route path="/producto/:id" element={<ProductDetail />} />
+                <Route path="/proyecto/:slug" element={<ProjectDetail />} />
                 <Route path="/carrito" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/cotizar" element={<Quote />} />

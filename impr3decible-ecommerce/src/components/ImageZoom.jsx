@@ -1,7 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const ImageZoom = ({ src, alt }) => {
   const [isZoomed, setIsZoomed] = useState(false)
+
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isZoomed])
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isZoomed) {
+        setIsZoomed(false)
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [isZoomed])
 
   return (
     <>
@@ -21,25 +42,26 @@ const ImageZoom = ({ src, alt }) => {
 
       {isZoomed && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 animate-fade-in cursor-zoom-out"
+          className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setIsZoomed(false)}
         >
           <button
-            className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-300 z-10"
-            onClick={(e) => {
-              e.stopPropagation()
-              setIsZoomed(false)
-            }}
-            aria-label="Cerrar"
+            className="absolute top-6 right-6 p-4 bg-primary hover:bg-orange-600 rounded-full transition-all duration-300 z-10 shadow-2xl hover:scale-110"
+            onClick={() => setIsZoomed(false)}
+            aria-label="Cerrar (ESC)"
           >
-            <span className="material-symbols-outlined text-white text-3xl">close</span>
+            <span className="material-symbols-outlined text-white text-4xl">close</span>
           </button>
-          <div className="relative w-full h-full flex items-center justify-center">
+          
+          <div className="absolute top-6 left-6 bg-black/70 text-white px-4 py-2 rounded-lg text-sm z-10">
+            Click en cualquier lugar o presiona ESC para cerrar
+          </div>
+
+          <div className="relative w-full h-full flex items-center justify-center cursor-zoom-out">
             <img
               src={src}
               alt={alt}
-              className="max-w-[95vw] max-h-[95vh] w-auto h-auto object-contain animate-scale-in rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain animate-scale-in rounded-lg shadow-2xl"
             />
           </div>
         </div>

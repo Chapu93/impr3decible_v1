@@ -91,6 +91,7 @@ const Home = () => {
             {[
               {
                 title: 'Prototipo de Dron',
+                slug: 'prototipo-dron',
                 description:
                   'Diseño y fabricación de un chasis ligero y resistente para un dron de carreras. Material: PETG reforzado con carbono.',
                 image:
@@ -98,6 +99,7 @@ const Home = () => {
               },
               {
                 title: 'Maqueta Arquitectónica',
+                slug: null,
                 description:
                   'Maqueta de alta definición para presentación de proyecto inmobiliario. Material: Resina para máximo detalle.',
                 image:
@@ -105,33 +107,51 @@ const Home = () => {
               },
               {
                 title: 'Piezas Mecánicas',
+                slug: null,
                 description:
                   'Fabricación de engranajes y soportes a medida para maquinaria industrial. Material: ABS de alta resistencia.',
                 image:
                   'https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt',
               },
-            ].map((project, index) => (
-              <div
-                key={index}
-                className="group overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-md hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-shadow duration-300"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    alt={project.title}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                    src={project.image}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-text-light dark:text-text-dark">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+            ].map((project, index) => {
+              const Component = project.slug ? Link : 'div'
+              const props = project.slug ? { to: `/proyecto/${project.slug}` } : {}
+              
+              return (
+                <Component
+                  key={index}
+                  {...props}
+                  className="group overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-md hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      alt={project.title}
+                      className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                      src={project.image}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-text-light dark:text-text-dark flex items-center justify-between">
+                      {project.title}
+                      {project.slug && (
+                        <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">
+                          arrow_forward
+                        </span>
+                      )}
+                    </h3>
+                    <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+                      {project.description}
+                    </p>
+                    {project.slug && (
+                      <p className="mt-3 text-sm text-primary font-semibold">
+                        Ver más detalles →
+                      </p>
+                    )}
+                  </div>
+                </Component>
+              )
+            })}
           </div>
         </div>
       </section>
