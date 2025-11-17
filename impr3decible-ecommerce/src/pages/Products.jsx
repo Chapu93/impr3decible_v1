@@ -92,9 +92,9 @@ const Products = () => {
     <div className="container mx-auto px-6 py-12">
       <div className="flex flex-col lg:flex-row gap-12">
         {/* Sidebar - Filters */}
-        <aside className="w-full lg:w-1/4 space-y-6 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
+        <aside className="w-full lg:w-1/4 space-y-4 lg:sticky lg:top-24 lg:self-start">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-text-light dark:text-text-dark">Filtros</h2>
+            <h2 className="text-lg font-bold text-text-light dark:text-text-dark">Filtros</h2>
             {(selectedMaterials.length > 0 || selectedColors.length > 0 || selectedCategory !== 'Todas') && (
               <button
                 onClick={() => {
@@ -110,16 +110,16 @@ const Products = () => {
             )}
           </div>
 
-          <div className="space-y-6 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-4">
+          <div className="space-y-4 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg p-3">
             {/* Categorías */}
             <div>
-              <h3 className="font-semibold mb-3 text-text-light dark:text-text-dark">Categorías</h3>
-              <ul className="space-y-2">
+              <h3 className="font-semibold mb-2 text-sm text-text-light dark:text-text-dark">Categorías</h3>
+              <ul className="space-y-1">
                 {categories.map((category) => (
                   <li key={category}>
                     <button
                       onClick={() => setSelectedCategory(category)}
-                      className={`text-left w-full px-2 py-1 rounded transition-all duration-300 ${
+                      className={`text-left w-full px-2 py-1 rounded transition-all duration-300 text-sm ${
                         selectedCategory === category
                           ? 'bg-primary/10 text-primary font-semibold'
                           : 'text-text-muted-light dark:text-text-muted-dark hover:text-primary hover:bg-primary/5'
@@ -133,9 +133,9 @@ const Products = () => {
             </div>
 
             {/* Materiales */}
-            <div className="border-t border-border-light dark:border-border-dark pt-4">
-              <h3 className="font-semibold mb-3 text-text-light dark:text-text-dark">Material</h3>
-              <div className="space-y-2">
+            <div className="border-t border-border-light dark:border-border-dark pt-3">
+              <h3 className="font-semibold mb-2 text-sm text-text-light dark:text-text-dark">Material</h3>
+              <div className="space-y-1.5">
                 {allMaterials.map((material) => (
                   <label key={material} className="flex items-center cursor-pointer group">
                     <input
@@ -153,8 +153,8 @@ const Products = () => {
             </div>
 
             {/* Colores */}
-            <div className="border-t border-border-light dark:border-border-dark pt-4">
-              <h3 className="font-semibold mb-3 text-text-light dark:text-text-dark">Color</h3>
+            <div className="border-t border-border-light dark:border-border-dark pt-3">
+              <h3 className="font-semibold mb-2 text-sm text-text-light dark:text-text-dark">Color</h3>
               <div className="flex flex-wrap gap-2">
                 {allColors.map((color) => (
                   <button
@@ -173,9 +173,9 @@ const Products = () => {
             </div>
 
             {/* Rango de Precio */}
-            <div className="border-t border-border-light dark:border-border-dark pt-4">
-              <h3 className="font-semibold mb-3 text-text-light dark:text-text-dark">Precio</h3>
-              <div className="space-y-3">
+            <div className="border-t border-border-light dark:border-border-dark pt-3">
+              <h3 className="font-semibold mb-2 text-sm text-text-light dark:text-text-dark">Precio</h3>
+              <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-text-muted-light dark:text-text-muted-dark">
                     ${priceRange[0]} - ${priceRange[1]}
