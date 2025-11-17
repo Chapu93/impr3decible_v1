@@ -33,7 +33,64 @@ const ProjectDetail = () => {
         <p>El prototipo final no solo cumplió con todas las especificaciones técnicas, sino que superó las expectativas en cuanto a durabilidad en las pruebas de campo. El cliente pudo validar su diseño electrónico rápidamente, reduciendo su tiempo de desarrollo en un 40% en comparación con métodos de fabricación tradicionales. Este éxito les permitió asegurar una nueva ronda de financiación para pasar a la producción en masa.</p>
       `,
     },
-    // Podemos agregar más proyectos aquí
+    'maqueta-arquitectonica': {
+      title: 'Maqueta Arquitectónica de Alta Definición',
+      subtitle: 'Transformación de planos digitales en una maqueta física detallada para presentación de proyecto inmobiliario de lujo.',
+      mainImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8',
+      gallery: [
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8',
+      ],
+      materials: [
+        { name: 'Estructura principal', value: 'Resina transparente de alta definición' },
+        { name: 'Detalles arquitectónicos', value: 'Resina blanca mate' },
+        { name: 'Base y paisajismo', value: 'PLA color madera' },
+      ],
+      technology: 'Impresión SLA (Estereolitografía) + FDM',
+      date: 'Agosto 2024',
+      description: `
+        <p>Un estudio de arquitectura de prestigio nos encargó la fabricación de una maqueta a escala 1:100 para presentar su nuevo proyecto residencial de lujo ante potenciales inversionistas. La maqueta debía capturar cada detalle arquitectónico del diseño, incluyendo la fachada acristalada, balcones volados, y el complejo paisajismo circundante.</p>
+      `,
+      challenge: `
+        <p>El principal desafío era lograr un nivel de detalle excepcional que pudiera apreciarse desde cualquier ángulo, manteniendo la transparencia de las secciones acristaladas del edificio. Además, el cliente necesitaba la maqueta en un plazo muy ajustado de 10 días para una presentación crucial. Cada elemento debía ser perfectamente proporcional y los acabados tenían que tener calidad de exposición.</p>
+      `,
+      solution: `
+        <p>Implementamos un flujo de trabajo híbrido utilizando dos tecnologías complementarias. Para la estructura del edificio y los elementos que requerían transparencia, empleamos impresión SLA con resina de alta definición, lo que nos permitió capturar todos los detalles arquitectónicos con una precisión de 50 micrones. Los elementos de paisajismo y la base se imprimieron en FDM con PLA texturizado que simula madera. Realizamos post-procesado meticuloso incluyendo lijado fino, pintura manual de detalles, y tratamiento UV para el acabado final. La maqueta se ensambló en módulos para facilitar el transporte.</p>
+      `,
+      results: `
+        <p>La maqueta superó las expectativas del cliente, convirtiéndose en la pieza central de su presentación. Los inversionistas quedaron impresionados por el nivel de detalle y realismo, lo que facilitó la comprensión del proyecto. El estudio de arquitectura reportó que la maqueta fue instrumental para asegurar la financiación del proyecto. Como resultado, nos han contratado para tres maquetas adicionales de proyectos futuros y nos han recomendado a otros estudios de arquitectura de la región.</p>
+      `,
+    },
+    'piezas-mecanicas': {
+      title: 'Piezas Mecánicas para Maquinaria Industrial',
+      subtitle: 'Fabricación a medida de componentes mecánicos de reemplazo para reducir tiempos de parada en producción.',
+      mainImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt',
+      gallery: [
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt',
+      ],
+      materials: [
+        { name: 'Engranajes principales', value: 'Nylon 12 reforzado con fibra de vidrio' },
+        { name: 'Soportes y brackets', value: 'ABS de alta temperatura' },
+        { name: 'Juntas y sellos', value: 'TPU 95A resistente a químicos' },
+      ],
+      technology: 'Impresión FDM con materiales técnicos',
+      date: 'Septiembre 2024',
+      description: `
+        <p>Una empresa manufacturera local nos contactó en situación de emergencia: una máquina crítica en su línea de producción se había averiado y el proveedor original de las piezas de repuesto tenía un tiempo de entrega de 6 semanas. La parada de producción estaba costando miles de euros al día. Necesitaban varios componentes mecánicos incluyendo engranajes, soportes y adaptadores customizados.</p>
+      `,
+      challenge: `
+        <p>El desafío era triple: primero, debíamos hacer ingeniería inversa de las piezas originales sin documentación técnica disponible. Segundo, las piezas debían soportar condiciones exigentes de operación continua con cargas mecánicas significativas y exposición a lubricantes industriales. Tercero, el tiempo era crítico - cada día de retraso representaba pérdidas económicas sustanciales para el cliente.</p>
+      `,
+      solution: `
+        <p>Implementamos un proceso acelerado de escaneo 3D de las piezas dañadas para obtener las geometrías exactas. Nuestro equipo de ingeniería optimizó los diseños para impresión 3D, reforzando las áreas de mayor estrés mecánico. Seleccionamos materiales técnicos de grado industrial: Nylon 12 con fibra de vidrio para los engranajes por su excepcional resistencia al desgaste y propiedades autolubricantes, ABS de alta temperatura para los soportes estructurales, y TPU resistente a químicos para las juntas. Produjimos las piezas en 48 horas y realizamos pruebas de torque y resistencia antes de la entrega.</p>
+      `,
+      results: `
+        <p>Las piezas impresas en 3D superaron las pruebas de rendimiento y la máquina volvió a estar operativa en menos de 72 horas desde el contacto inicial, frente a las 6 semanas que hubiera tomado el método tradicional. Esto significó un ahorro de más de 50,000€ en pérdidas por parada de producción. Tres meses después, las piezas siguen funcionando perfectamente sin signos de desgaste prematuro. El cliente ahora mantiene un stock de repuestos impresos en 3D para otras máquinas críticas y nos ha contratado para desarrollar mejoras en otros componentes de su maquinaria.</p>
+      `,
+    },
   }
 
   const project = projects[slug]

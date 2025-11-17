@@ -99,7 +99,7 @@ const Home = () => {
               },
               {
                 title: 'Maqueta Arquitectónica',
-                slug: null,
+                slug: 'maqueta-arquitectonica',
                 description:
                   'Maqueta de alta definición para presentación de proyecto inmobiliario. Material: Resina para máximo detalle.',
                 image:
@@ -107,7 +107,7 @@ const Home = () => {
               },
               {
                 title: 'Piezas Mecánicas',
-                slug: null,
+                slug: 'piezas-mecanicas',
                 description:
                   'Fabricación de engranajes y soportes a medida para maquinaria industrial. Material: ABS de alta resistencia.',
                 image:
