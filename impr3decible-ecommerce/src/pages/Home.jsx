@@ -194,7 +194,7 @@ const Home = () => {
                   </div>
                 </div>
                 <p className="mt-6 text-text-muted-light dark:text-text-muted-dark italic">
-                  "{testimonial.comment}"
+                  &ldquo;{testimonial.comment}&rdquo;
                 </p>
               </div>
             ))}
