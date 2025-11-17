@@ -9,8 +9,8 @@ const Toast = ({ message, type = 'success', onClose, duration = 3000 }) => {
     return () => clearTimeout(timer)
   }, [duration, onClose])
 
-  const bgColor = type === 'success' ? 'bg-green-500' : type === 'info' ? 'bg-blue-500' : 'bg-primary'
-  const icon = type === 'success' ? 'check_circle' : type === 'info' ? 'info' : 'add_shopping_cart'
+  const bgColor = type === 'success' ? 'bg-primary' : type === 'info' ? 'bg-blue-500' : type === 'error' ? 'bg-red-500' : 'bg-primary'
+  const icon = type === 'success' ? 'check_circle' : type === 'info' ? 'info' : type === 'error' ? 'error' : 'shopping_cart'
 
   return (
     <div className="fixed top-20 right-4 z-50 toast-enter">

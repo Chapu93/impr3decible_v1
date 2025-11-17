@@ -92,7 +92,7 @@ const Products = () => {
     <div className="container mx-auto px-6 py-12">
       <div className="flex flex-col lg:flex-row gap-12">
         {/* Sidebar - Filters */}
-        <aside className="w-full lg:w-1/4 space-y-6">
+        <aside className="w-full lg:w-1/4 space-y-6 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-text-light dark:text-text-dark">Filtros</h2>
             {(selectedMaterials.length > 0 || selectedColors.length > 0 || selectedCategory !== 'Todas') && (
