@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
+import ImageZoom from '../components/ImageZoom'
 import { getProductById, products } from '../data/products'
 
 const ProductDetail = () => {
@@ -8,6 +10,7 @@ const ProductDetail = () => {
   const navigate = useNavigate()
   const product = getProductById(id)
   const { addToCart } = useCart()
+  const { isInWishlist, toggleWishlist } = useWishlist()
 
   const [selectedMaterial, setSelectedMaterial] = useState(product?.material[0] || '')
   const [selectedColor, setSelectedColor] = useState(product?.colors[0] || '')
@@ -46,21 +49,36 @@ const ProductDetail = () => {
     <div className="container mx-auto px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Product Image */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 animate-fade-in">
           <div className="aspect-square w-full bg-surface-light dark:bg-surface-dark rounded-lg overflow-hidden border border-border-light dark:border-border-dark">
-            <img
-              alt={product.name}
-              className="w-full h-full object-cover"
-              src={product.image}
-            />
+            <ImageZoom src={product.image} alt={product.name} />
           </div>
+          <p className="text-xs text-center text-text-muted-light dark:text-text-muted-dark">
+            <span className="material-symbols-outlined text-sm align-middle">info</span>
+            Haz clic en la imagen para ampliar
+          </p>
         </div>
 
         {/* Product Info */}
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight text-text-light dark:text-text-dark">
-            {product.name}
-          </h1>
+        <div className="animate-fade-in-up animation-delay-200">
+          <div className="flex items-start justify-between">
+            <h1 className="text-4xl font-bold tracking-tight text-text-light dark:text-text-dark flex-1">
+              {product.name}
+            </h1>
+            <button
+              onClick={() => toggleWishlist(product)}
+              className={`p-3 rounded-full transition-all duration-300 ${
+                isInWishlist(product.id)
+                  ? 'bg-primary text-white scale-110'
+                  : 'bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-primary hover:text-white'
+              }`}
+              aria-label={isInWishlist(product.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'}
+            >
+              <span className="material-symbols-outlined">
+                {isInWishlist(product.id) ? 'favorite' : 'favorite_border'}
+              </span>
+            </button>
+          </div>
           <div className="mt-4 flex items-center gap-4">
             <span className="text-3xl font-bold text-primary">${product.price.toFixed(2)}</span>
             <div className="flex items-center text-yellow-500">

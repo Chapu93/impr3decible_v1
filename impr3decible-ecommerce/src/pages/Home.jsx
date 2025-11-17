@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
+import Parallax from '../components/Parallax'
 import { products } from '../data/products'
 
 const Home = () => {
@@ -34,14 +35,15 @@ const Home = () => {
               </a>
             </div>
           </div>
-          <div className="relative opacity-0 animate-slide-in-right animation-delay-300">
+          <Parallax speed={-0.3} className="relative opacity-0 animate-slide-in-right animation-delay-300">
             <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full animate-pulse"></div>
             <img
               alt="Impresora 3D en acción creando un objeto naranja"
               className="relative rounded-lg shadow-2xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaBvG6VtH3h0egq6oVoYByItGJtl4XrHFFrrR3OD9dCPrO7BTtLfudCjXEqnoB7M9_qdBQP2pjBxiIELY7ys1eSVk-jWdAqrgWOIqqoCzdQ6m3clTx544-aXToUa0_nEDNobJKuEcdP6hEGG7FkUUGR7Dl3OIWmRSzvwoERi8uxCrMr3s0e5zmpbl_h6OJIwBrBtdV7nc8q_nW-h6mm3isPNV5RWSphdg0GGidKJ6XD4JLHjObHuxMVcIIaWFZ_k4BjkNIljzSVUmE"
+              loading="lazy"
             />
-          </div>
+          </Parallax>
         </div>
       </section>
 
