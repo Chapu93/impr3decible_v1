@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Catálogo de Productos - Impr3Decible</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f97316", // Orange
+            "background-light": "#f8fafc", // Cool Gray 50
+            "background-dark": "#111827", // Dark Gray - using Gray 900 for a deep, modern look
+            "surface-light": "#ffffff",
+            "surface-dark": "#1f2937", // Slightly lighter dark gray for surfaces - Gray 800
+            "text-light": "#18181b",
+            "text-dark": "#f8fafc",
+            "text-muted-light": "#71717a", // Zinc 500
+            "text-muted-dark": "#9ca3af", // Gray 400 for better contrast on dark gray
+            "border-light": "#e4e4e7", // Zinc 200
+            "border-dark": "#374151", // Gray 700
+          },
+          fontFamily: {
+            display: ["Work Sans", "sans-serif"],
+            mono: ["Roboto Mono", "monospace"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display bg-background-dark text-text-dark antialiased">
+<div id="root">
+<header class="bg-surface-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-dark">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<a class="flex items-center gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0UYA2cN4KvwU6joSctQkDmlQY9mWwsLypKPjDAK0-0ge30Eqi6PaiN4jT6Qe83ZDFaMH1OWMhiy55EFXeRBUpw8KQNknxcZU27Gy9FgJ-McsWxqDbzDtn5xm1U8z2o85WTYbRrPVIONSPrrcpt1SXG7rU5YCpqr7UVFA-GX1MjFNN0KimMZIASUdUGAz2j-1wAADxN3fVb5jdN2rVMPubaE3ASQQNFbqRtjWI68JeZXkl2K7NSbUvb-Gd1ett8wKL41xwlDcotYak"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-dark">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-dark -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-text-dark hover:text-primary transition-colors duration-300" href="#">Servicios</a>
+<a class="text-sm font-semibold text-primary" href="#">Productos</a>
+<a class="text-sm font-semibold text-text-dark hover:text-primary transition-colors duration-300" href="#">Proyectos</a>
+<a class="text-sm font-semibold text-text-dark hover:text-primary transition-colors duration-300" href="#">Testimonios</a>
+<a class="text-sm font-semibold text-text-dark hover:text-primary transition-colors duration-300" href="#">Cotizar</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="relative p-2 rounded-full hover:bg-gray-700 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-300">shopping_cart</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">3</span>
+</a>
+<button class="md:hidden p-2 rounded-full hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-gray-300">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-6 py-12">
+<div class="flex flex-col lg:flex-row gap-12">
+<aside class="w-full lg:w-1/4">
+<h2 class="text-xl font-bold mb-6">Filtros</h2>
+<div class="space-y-8">
+<div>
+<h3 class="font-semibold mb-4">Categorías</h3>
+<ul class="space-y-2">
+<li><a class="text-text-muted-dark hover:text-primary" href="#">Figuras</a></li>
+<li><a class="text-text-muted-dark hover:text-primary" href="#">Decoración Hogar</a></li>
+<li><a class="text-text-muted-dark hover:text-primary" href="#">Gadgets</a></li>
+<li><a class="text-text-muted-dark hover:text-primary" href="#">Diseños Personalizados</a></li>
+<li><a class="text-text-muted-dark hover:text-primary" href="#">Accesorios</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-semibold mb-4">Material</h3>
+<div class="space-y-2">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-border-dark bg-surface-dark text-primary focus:ring-primary focus:ring-offset-surface-dark" id="material-pla" name="material[]" type="checkbox" value="pla"/>
+<label class="ml-3 text-sm text-text-muted-dark" for="material-pla">PLA</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-border-dark bg-surface-dark text-primary focus:ring-primary focus:ring-offset-surface-dark" id="material-abs" name="material[]" type="checkbox" value="abs"/>
+<label class="ml-3 text-sm text-text-muted-dark" for="material-abs">ABS</label>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-border-dark bg-surface-dark text-primary focus:ring-primary focus:ring-offset-surface-dark" id="material-resin" name="material[]" type="checkbox" value="resin"/>
+<label class="ml-3 text-sm text-text-muted-dark" for="material-resin">Resina</label>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-semibold mb-4">Color</h3>
+<div class="flex flex-wrap gap-3">
+<button aria-label="Negro" class="h-8 w-8 rounded-full bg-gray-900 border-2 border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-background-dark"></button>
+<button aria-label="Blanco" class="h-8 w-8 rounded-full bg-white border-2 border-border-dark focus:ring-2 focus:ring-primary focus:ring-offset-background-dark"></button>
+<button aria-label="Rojo" class="h-8 w-8 rounded-full bg-red-500 border-2 border-transparent focus:ring-2 focus:ring-primary focus:ring-offset-background-dark"></button>
+<button aria-label="Naranja" class="h-8 w-8 rounded-full bg-primary border-2 border-transparent ring-2 ring-primary ring-offset-background-dark"></button>
+<button aria-label="Azul" class="h-8 w-8 rounded-full bg-blue-500 border-2 border-transparent focus:ring-2 focus:ring-primary focus:ring-offset-background-dark"></button>
+<button aria-label="Verde" class="h-8 w-8 rounded-full bg-green-500 border-2 border-transparent focus:ring-2 focus:ring-primary focus:ring-offset-background-dark"></button>
+</div>
+</div>
+<div>
+<h3 class="font-semibold mb-4">Rango de Precio</h3>
+<div class="flex items-center gap-2">
+<input class="w-full rounded-md border-border-dark bg-surface-dark text-sm placeholder:text-text-muted-dark" placeholder="$0" type="number"/>
+<span>-</span>
+<input class="w-full rounded-md border-border-dark bg-surface-dark text-sm placeholder:text-text-muted-dark" placeholder="$100" type="number"/>
+</div>
+<input class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer mt-4" max="100" min="0" type="range"/>
+</div>
+<button class="w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors">Aplicar Filtros</button>
+</div>
+</aside>
+<section class="w-full lg:w-3/4">
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+<div class="relative w-full sm:max-w-xs">
+<input class="w-full pl-10 pr-4 py-2 border border-border-dark rounded-lg text-sm bg-surface-dark placeholder:text-text-muted-dark focus:ring-primary focus:border-primary" placeholder="Buscar productos..." type="search"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted-dark text-xl">search</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<label class="text-sm font-medium" for="sort">Ordenar por:</label>
+<select class="rounded-lg border-border-dark text-sm bg-surface-dark focus:ring-primary focus:border-primary" id="sort" name="sort">
+<option>Relevancia</option>
+<option>Precio: Menor a Mayor</option>
+<option>Precio: Mayor a Menor</option>
+<option>Novedades</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Figura de acción articulada impresa en 3D" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Figura Articulada</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Un robot articulado personalizable, ideal para coleccionistas y entusiastas del diseño.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$24.99</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Soporte para auriculares con diseño geométrico" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmtT5xGT5YzYsBQn6H89mA0wz2kFU9Jni9B77nOMhzpX1B01GC87Z5CPISzihT_v13-FjxybSKF3TkK2p4nkCeK3QkyGzwablCPArm2jO9aKXY6gF39jtoURhak00H8lgHgJnrHtXxWLTaR7NQHKpc5tSM4L6epaf0TCZnYKL_K01Vx-L_9S_Y0MXKe15D-JD5wNvMyd-B6F0Ar1dY1LLqNbRlefs0xp55_btjd0UO4nxNVLyrQFgcNycshHgmbGnF_cvtuS_cxUqw"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Soporte Auriculares</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Mantén tu escritorio organizado con este elegante soporte de diseño minimalista.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$19.99</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Set de macetas geométricas para suculentas" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Macetas Geométricas</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Set de 3 macetas con patrones modernos, perfectas para suculentas y plantas pequeñas.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$29.99</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Llavero personalizado con un nombre" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0UYA2cN4KvwU6joSctQkDmlQY9mWwsLypKPjDAK0-0ge30Eqi6PaiN4jT6Qe83ZDFaMH1OWMhiy55EFXeRBUpw8KQNknxcZU27Gy9FgJ-McsWxqDbzDtn5xm1U8z2o85WTYbRrPVIONSPrrcpt1SXG7rU5YCpqr7UVFA-GX1MjFNN0KimMZIASUdUGAz2j-1wAADxN3fVb5jdN2rVMPubaE3ASQQNFbqRtjWI68JeZXkl2K7NSbUvb-Gd1ett8wKL41xwlDcotYak"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Llavero Personalizado</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Crea tu propio llavero con tu nombre o una palabra especial. Disponible en varios colores.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$9.99</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Prototipo de un dron impreso en 3D" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmtT5xGT5YzYsBQn6H89mA0wz2kFU9Jni9B77nOMhzpX1B01GC87Z5CPISzihT_v13-FjxybSKF3TkK2p4nkCeK3QkyGzwablCPArm2jO9aKXY6gF39jtoURhak00H8lgHgJnrHtXxWLTaR7NQHKpc5tSM4L6epaf0TCZnYKL_K01Vx-L_9S_Y0MXKe15D-JD5wNvMyd-B6F0Ar1dY1LLqNbRlefs0xp55_btjd0UO4nxNVLyrQFgcNycshHgmbGnF_cvtuS_cxUqw"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Chasis de Dron</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Chasis ligero y resistente para un dron de carreras. Material: PETG reforzado con carbono.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$45.50</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col overflow-hidden rounded-lg bg-surface-dark border border-border-dark shadow-lg shadow-black/20 hover:shadow-primary/20 transition-shadow duration-300">
+<div class="overflow-hidden">
+<img alt="Piezas mecánicas personalizadas de color naranja" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="text-xl font-bold">Engranajes a Medida</h3>
+<p class="mt-2 text-sm text-text-muted-dark flex-grow">Fabricación de engranajes y soportes a medida para maquinaria. Material: ABS de alta resistencia.</p>
+<div class="mt-4 flex justify-between items-center">
+<span class="text-lg font-bold text-primary">$15.00</span>
+<button class="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+<span>Añadir</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<nav aria-label="Pagination" class="mt-12 flex justify-center">
+<ul class="flex items-center -space-x-px h-10 text-base">
+<li>
+<a class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-text-muted-dark bg-surface-dark border border-e-0 border-border-dark rounded-s-lg hover:bg-gray-700 hover:text-white" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-4 h-10 leading-tight text-white bg-primary border border-primary" href="#">1</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-4 h-10 leading-tight text-text-muted-dark bg-surface-dark border border-border-dark hover:bg-gray-700 hover:text-white" href="#">2</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-4 h-10 leading-tight text-text-muted-dark bg-surface-dark border border-border-dark hover:bg-gray-700 hover:text-white" href="#">3</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-4 h-10 leading-tight text-text-muted-dark bg-surface-dark border border-border-dark rounded-e-lg hover:bg-gray-700 hover:text-white" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</a>
+</li>
+</ul>
+</nav>
+</section>
+</div>
+</main>
+<footer class="bg-surface-dark border-t border-border-dark mt-12">
+<div class="container mx-auto px-6 py-12">
+<div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+<div>
+<a class="flex items-center justify-center md:justify-start gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvOmsiVZjUF6WDLcvPVmXrNe5YLhTgNqQVGRU2PGVfrs8raPrF5HDMQtRgJ3Eq8LL0f6kPatVBwyQqZUkWRUdWfEDN1kMwGDhFiS2hWO_iiG7IWxz83jpQc0Ou-sz2rnPBzAGXyzh-515qD79Oqc4blZDjFK9Dwv9OuuvQmNuqILowmtAqmWrDogokaQsuY2i19_FC2aLyjPvsBTfpPqFME3jsvYqpnUoBy34PeUEBBJE3kHjev5DquQq1CwZOss-Ub13NJ0VC_EWD"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-dark">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-dark -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<p class="mt-4 text-sm text-text-muted-dark">Transformando tus ideas en realidad, capa por capa.</p>
+</div>
+<div class="md:col-span-2">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+<div>
+<h4 class="font-bold tracking-wider uppercase">Navegación</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Servicios</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Productos</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Proyectos</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Testimonios</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Cotizar</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase">Legal</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Política de Privacidad</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="#">Términos de Servicio</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase">Contacto</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="mailto:contacto@impr3decible.com">contacto@impr3decible.com</a></li>
+<li><a class="text-text-muted-dark hover:text-primary transition-colors" href="tel:+34000000000">+34 000 000 000</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-border-dark text-center text-sm text-text-muted-dark">
+<p>© 2024 Impr3Decible. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

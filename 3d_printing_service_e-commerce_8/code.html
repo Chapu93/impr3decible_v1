@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Carrito de Compras - Impr3Decible</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f97316", // Orange
+            "background-light": "#f8fafc", // Cool Gray 50
+            "background-dark": "#111827", // Dark Gray - using Gray 900 for a deep, modern look
+            "surface-light": "#ffffff",
+            "surface-dark": "#1f2937", // Slightly lighter dark gray for surfaces - Gray 800
+            "text-light": "#18181b",
+            "text-dark": "#f8fafc",
+            "text-muted-light": "#71717a", // Zinc 500
+            "text-muted-dark": "#9ca3af", // Gray 400 for better contrast on dark gray
+            "border-light": "#e4e4e7", // Zinc 200
+            "border-dark": "#374151", // Gray 700
+          },
+          fontFamily: {
+            display: ["Work Sans", "sans-serif"],
+            mono: ["Roboto Mono", "monospace"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light text-text-light antialiased">
+<div id="root">
+<header class="bg-surface-light/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-light">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<a class="flex items-center gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0UYA2cN4KvwU6joSctQkDmlQY9mWwsLypKPjDAK0-0ge30Eqi6PaiN4jT6Qe83ZDFaMH1OWMhiy55EFXeRBUpw8KQNknxcZU27Gy9FgJ-McsWxqDbzDtn5xm1U8z2o85WTYbRrPVIONSPrrcpt1SXG7rU5YCpqr7UVFA-GX1MjFNN0KimMZIASUdUGAz2j-1wAADxN3fVb5jdN2rVMPubaE3ASQQNFbqRtjWI68JeZXkl2K7NSbUvb-Gd1ett8wKL41xwlDcotYak"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-light">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-light -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#servicios">Servicios</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#productos">Productos</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#proyectos">Proyectos</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#cotizar">Cotizar</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="relative p-2 rounded-full hover:bg-gray-100 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-700">shopping_cart</span>
+<span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">3</span>
+</a>
+<button class="p-2 rounded-full hover:bg-gray-100 transition-colors" id="darkModeToggle">
+<span class="material-symbols-outlined block text-gray-700">dark_mode</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section class="py-16 md:py-24 bg-background-light">
+<div class="container mx-auto px-6">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-3xl md:text-4xl font-bold text-center text-text-light mb-8">Tu Carrito de Compras</h1>
+<div class="bg-surface-light rounded-lg border border-border-light shadow-lg">
+<div class="p-6 md:p-8">
+<div class="flow-root">
+<ul class="-my-6 divide-y divide-border-light">
+<li class="flex py-6">
+<div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-border-light">
+<img alt="Figura de acción articulada impresa en 3D" class="h-full w-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhoAuOEbbocbjF26hKg8LIJBTG4zx4lQ3Lg1HDj1iju0ZrDn2VVxuxTpD9ZZpgtR-Wwj16QDC8kNP-UNOdk4gkuy4uTSUyWdxqsQFFf0PNz2i_BvoN-FPilrlNxhDiiDvjrJJGI71RRBKVEnquMJjZnV7O1VQuMhGgeH5w5cEyOHcBHXfASegN2QlCZtS5uQMMAX91BxZ6KGGHW-G9lI-aQhHJ4dn_BPFRThjJoXaiDZwJZzORcJ0l9PFmxyL8oYJDlh-nrtG2zPZt"/>
+</div>
+<div class="ml-4 flex flex-1 flex-col">
+<div>
+<div class="flex justify-between text-base font-bold text-text-light">
+<h3>
+<a class="hover:text-primary" href="#">Figura Articulada</a>
+</h3>
+<p class="ml-4">$24.99</p>
+</div>
+<p class="mt-1 text-sm text-text-muted-light">Color: Gris espacial</p>
+</div>
+<div class="flex flex-1 items-end justify-between text-sm">
+<div class="flex items-center border border-border-light rounded-md">
+<button class="px-2 py-1 text-text-muted-light hover:text-primary transition-colors">-</button>
+<input class="w-12 text-center border-0 bg-transparent focus:ring-0" type="text" value="1"/>
+<button class="px-2 py-1 text-text-muted-light hover:text-primary transition-colors">+</button>
+</div>
+<div class="flex">
+<button class="font-medium text-primary hover:text-orange-600 flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+<span>Eliminar</span>
+</button>
+</div>
+</div>
+</div>
+</li>
+<li class="flex py-6">
+<div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-border-light">
+<img alt="Set de macetas geométricas para suculentas" class="h-full w-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzex9XQFz-MF33BcpOh6NzkTCfgnZvzwuajUYM1buSP_88-Sc5vzi4_tT_Cw0ZfB0SiN-Lbo7JEQ3E70BfJ-ykKSsrdio3qsw9cddgp1pBATVRrb6XpBWCpon_zEsJEYlK-13oTrqNpcc8F59I4hl63Wtrb_xeROHsnEmSEn-PX4qGtcnHB_5ir9rvB8mPoCr5N45M-hvBJn998eGqAVwj_VZXmPrZGcwztr6X7Z1KvWeLmSvrI2uMy-KQ9tNY9PWWaGOnRxAgA9D8"/>
+</div>
+<div class="ml-4 flex flex-1 flex-col">
+<div>
+<div class="flex justify-between text-base font-bold text-text-light">
+<h3>
+<a class="hover:text-primary" href="#">Macetas Geométricas</a>
+</h3>
+<p class="ml-4">$59.98</p>
+</div>
+<p class="mt-1 text-sm text-text-muted-light">Set de 3, Color: Blanco</p>
+</div>
+<div class="flex flex-1 items-end justify-between text-sm">
+<div class="flex items-center border border-border-light rounded-md">
+<button class="px-2 py-1 text-text-muted-light hover:text-primary transition-colors">-</button>
+<input class="w-12 text-center border-0 bg-transparent focus:ring-0" type="text" value="2"/>
+<button class="px-2 py-1 text-text-muted-light hover:text-primary transition-colors">+</button>
+</div>
+<div class="flex">
+<button class="font-medium text-primary hover:text-orange-600 flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-base">delete</span>
+<span>Eliminar</span>
+</button>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-border-light px-6 py-6 md:px-8">
+<div class="space-y-4 text-base font-medium text-text-light">
+<div class="flex justify-between">
+<p class="text-text-muted-light">Subtotal</p>
+<p>$84.97</p>
+</div>
+<div class="flex justify-between">
+<p class="text-text-muted-light">Envío</p>
+<p>$5.00</p>
+</div>
+<div class="flex justify-between text-lg font-bold">
+<p>Total</p>
+<p>$89.97</p>
+</div>
+</div>
+<div class="mt-6">
+<a class="w-full flex items-center justify-center rounded-lg border border-transparent bg-primary px-6 py-3 text-base font-bold text-white shadow-lg hover:shadow-primary/50 hover:bg-orange-600 transition-all duration-300 transform hover:-translate-y-0.5" href="#">Proceder al Pago</a>
+</div>
+<div class="mt-6 flex justify-center text-center text-sm text-text-muted-light">
+<p>
+                    o <a class="font-medium text-primary hover:text-orange-600" href="#productos">
+                      Continuar Comprando
+                      <span aria-hidden="true"> →</span></a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-light border-t border-border-light">
+<div class="container mx-auto px-6 py-12">
+<div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+<div>
+<a class="flex items-center justify-center md:justify-start gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvOmsiVZjUF6WDLcvPVmXrNe5YLhTgNqQVGRU2PGVfrs8raPrF5HDMQtRgJ3Eq8LL0f6kPatVBwyQqZUkWRUdWfEDN1kMwGDhFiS2hWO_iiG7IWxz83jpQc0Ou-sz2rnPBzAGXyzh-515qD79Oqc4blZDjFK9Dwv9OuuvQmNuqILowmtAqmWrDogokaQsuY2i19_FC2aLyjPvsBTfpPqFME3jsvYqpnUoBy34PeUEBBJE3kHjev5DquQq1CwZOss-Ub13NJ0VC_EWD"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-light">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-light -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<p class="mt-4 text-sm text-text-muted-light">Transformando tus ideas en realidad, capa por capa.</p>
+</div>
+<div class="md:col-span-2">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+<div>
+<h4 class="font-bold tracking-wider uppercase">Navegación</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#servicios">Servicios</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#productos">Productos</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#proyectos">Proyectos</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#cotizar">Cotizar</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase">Legal</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Política de Privacidad</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Términos de Servicio</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase">Contacto</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="mailto:contacto@impr3decible.com">contacto@impr3decible.com</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="tel:+34000000000">+34 000 000 000</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-border-light text-center text-sm text-text-muted-light">
+<p>© 2024 Impr3Decible. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confirmación de Solicitud - Impr3Decible</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f97316", // Orange
+            "background-light": "#f8fafc", // Cool Gray 50
+            "surface-light": "#ffffff", // White
+            "text-light": "#1f2937", // Gray 800
+            "text-muted-light": "#6b7280", // Gray 500
+            "border-light": "#e5e7eb", // Gray 200
+          },
+          fontFamily: {
+            display: ["Work Sans", "sans-serif"],
+            mono: ["Roboto Mono", "monospace"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light text-text-light antialiased">
+<div id="root">
+<header class="bg-surface-light/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-light">
+<div class="container mx-auto px-6 py-4">
+<div class="flex justify-between items-center">
+<a class="flex items-center gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0UYA2cN4KvwU6joSctQkDmlQY9mWwsLypKPjDAK0-0ge30Eqi6PaiN4jT6Qe83ZDFaMH1OWMhiy55EFXeRBUpw8KQNknxcZU27Gy9FgJ-McsWxqDbzDtn5xm1U8z2o85WTYbRrPVIONSPrrcpt1SXG7rU5YCpqr7UVFA-GX1MjFNN0KimMZIASUdUGAz2j-1wAADxN3fVb5jdN2rVMPubaE3ASQQNFbqRtjWI68JeZXkl2K7NSbUvb-Gd1ett8wKL41xwlDcotYak"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-light">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-light -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#">Servicios</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#">Productos</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#">Proyectos</a>
+<a class="text-sm font-semibold text-text-light hover:text-primary transition-colors duration-300" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="p-2 rounded-full hover:bg-gray-100 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-600">shopping_cart</span>
+</a>
+<a class="bg-primary text-white font-bold py-2 px-5 rounded-lg text-sm hover:bg-orange-600 transition-colors duration-300 hidden sm:block" href="#">
+              Cotizar
+            </a>
+</div>
+</div>
+</div>
+</header>
+<main class="py-16 md:py-24">
+<div class="container mx-auto px-6">
+<div class="max-w-2xl mx-auto text-center">
+<div class="bg-surface-light p-8 md:p-12 rounded-lg border border-border-light shadow-lg">
+<div class="mb-6">
+<div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-green-600">check_circle</span>
+</div>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold text-text-light">¡Solicitud Enviada con Éxito!</h1>
+<p class="mt-4 text-lg text-text-muted-light">Hemos recibido tu solicitud de cotización. Nuestro equipo la revisará y se pondrá en contacto contigo a la brevedad.</p>
+<div class="mt-8 bg-background-light p-6 rounded-lg border border-border-light text-left">
+<h2 class="text-lg font-semibold text-text-light">Resumen de tu solicitud</h2>
+<p class="mt-2 text-sm text-text-muted-light">Recibirás un correo electrónico en <span class="font-semibold text-primary">juan.perez@ejemplo.com</span> con todos los detalles y el número de seguimiento de tu solicitud.</p>
+<ul class="mt-4 space-y-2 text-sm text-text-muted-light">
+<li class="flex items-center"><span class="material-symbols-outlined text-base mr-2 text-primary">tag</span>Número de solicitud: <span class="ml-1 font-mono text-text-light">#COT-3D-84B92C</span></li>
+<li class="flex items-center"><span class="material-symbols-outlined text-base mr-2 text-primary">calendar_today</span>Fecha de envío: <span class="ml-1 font-mono text-text-light">23 de Julio, 2024</span></li>
+</ul>
+</div>
+<div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+<a class="w-full sm:w-auto bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors duration-300 flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">home</span>
+                Volver al Inicio
+              </a>
+<a class="w-full sm:w-auto bg-gray-100 text-text-light font-bold py-3 px-6 rounded-lg hover:bg-gray-200 border border-border-light transition-colors duration-300 flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Ver mis Solicitudes
+              </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-light border-t border-border-light">
+<div class="container mx-auto px-6 py-12">
+<div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+<div>
+<a class="flex items-center justify-center md:justify-start gap-3" href="#">
+<img alt="Impr3Decible logo icon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvOmsiVZjUF6WDLcvPVmXrNe5YLhTgNqQVGRU2PGVfrs8raPrF5HDMQtRgJ3Eq8LL0f6kPatVBwyQqZUkWRUdWfEDN1kMwGDhFiS2hWO_iiG7IWxz83jpQc0Ou-sz2rnPBzAGXyzh-515qD79Oqc4blZDjFK9Dwv9OuuvQmNuqILowmtAqmWrDogokaQsuY2i19_FC2aLyjPvsBTfpPqFME3jsvYqpnUoBy34PeUEBBJE3kHjev5DquQq1CwZOss-Ub13NJ0VC_EWD"/>
+<div class="flex flex-col">
+<span class="font-bold text-xl tracking-tight text-text-light">Impr<span class="text-primary">3D</span>ecible</span>
+<span class="text-xs text-text-muted-light -mt-1 tracking-wider">IMPRESIÓN 3D</span>
+</div>
+</a>
+<p class="mt-4 text-sm text-text-muted-light">Transformando tus ideas en realidad, capa por capa.</p>
+</div>
+<div class="md:col-span-2">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+<div>
+<h4 class="font-bold tracking-wider uppercase text-text-light">Navegación</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Servicios</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Productos</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Proyectos</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Testimonios</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Cotizar</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase text-text-light">Legal</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Política de Privacidad</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="#">Términos de Servicio</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold tracking-wider uppercase text-text-light">Contacto</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="mailto:contacto@impr3decible.com">contacto@impr3decible.com</a></li>
+<li><a class="text-text-muted-light hover:text-primary transition-colors" href="tel:+34000000000">+34 000 000 000</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-border-light text-center text-sm text-text-muted-light">
+<p>© 2024 Impr3Decible. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
