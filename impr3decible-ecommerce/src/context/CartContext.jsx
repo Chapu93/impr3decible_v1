@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { useToast } from './ToastContext'
 
 const CartContext = createContext()
 
@@ -11,6 +12,7 @@ export const useCart = () => {
 }
 
 export const CartProvider = ({ children }) => {
+  const { showToast } = useToast()
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem('cart')
     return savedCart ? JSON.parse(savedCart) : []
@@ -30,9 +32,11 @@ export const CartProvider = ({ children }) => {
       if (existingItemIndex > -1) {
         const updatedItems = [...prevItems]
         updatedItems[existingItemIndex].quantity += quantity
+        showToast(`${product.name} actualizado en el carrito`, 'success')
         return updatedItems
       }
 
+      showToast(`${product.name} añadido al carrito`, 'success')
       return [...prevItems, { ...product, quantity, options }]
     })
   }

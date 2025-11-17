@@ -8,37 +8,37 @@ const Home = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-background-light dark:bg-background-dark transition-colors duration-300">
+      <section className="py-20 md:py-32 bg-background-light dark:bg-background-dark transition-colors duration-500">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left animate-fade-in-up">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight text-text-light dark:text-text-dark">
               El cielo es el límite, la impresión 3d{' '}
               <span className="text-primary">Impr3Decible</span>.
             </h1>
-            <p className="mt-6 text-lg text-text-muted-light dark:text-text-muted-dark max-w-xl mx-auto md:mx-0">
+            <p className="mt-6 text-lg text-text-muted-light dark:text-text-muted-dark max-w-xl mx-auto md:mx-0 opacity-0 animate-fade-in-up animation-delay-200">
               Transformamos tus diseños digitales en objetos físicos de alta calidad. Prototipos,
               piezas funcionales, maquetas y más, con la tecnología más avanzada.
             </p>
-            <div className="mt-8 flex justify-center md:justify-start gap-4">
+            <div className="mt-8 flex justify-center md:justify-start gap-4 opacity-0 animate-fade-in-up animation-delay-400">
               <Link
                 to="/cotizar"
-                className="bg-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-primary/50 hover:bg-orange-600 transition-all duration-300 transform hover:-translate-y-0.5"
+                className="bg-primary text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-primary/50 hover:bg-orange-600 transition-all duration-500 transform hover:-translate-y-1 hover:scale-105"
               >
                 Obtener Cotización
               </Link>
               <a
                 href="#proyectos"
-                className="bg-surface-light dark:bg-surface-dark font-bold py-3 px-8 rounded-lg border border-border-light dark:border-border-dark hover:border-primary/50 hover:text-primary transition-all duration-300"
+                className="bg-surface-light dark:bg-surface-dark font-bold py-3 px-8 rounded-lg border border-border-light dark:border-border-dark hover:border-primary hover:text-primary transition-all duration-500 hover:scale-105"
               >
                 Ver Proyectos
               </a>
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+          <div className="relative opacity-0 animate-slide-in-right animation-delay-300">
+            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full animate-pulse"></div>
             <img
               alt="Impresora 3D en acción creando un objeto naranja"
-              className="relative rounded-lg shadow-2xl w-full h-auto object-cover"
+              className="relative rounded-lg shadow-2xl w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaBvG6VtH3h0egq6oVoYByItGJtl4XrHFFrrR3OD9dCPrO7BTtLfudCjXEqnoB7M9_qdBQP2pjBxiIELY7ys1eSVk-jWdAqrgWOIqqoCzdQ6m3clTx544-aXToUa0_nEDNobJKuEcdP6hEGG7FkUUGR7Dl3OIWmRSzvwoERi8uxCrMr3s0e5zmpbl_h6OJIwBrBtdV7nc8q_nW-h6mm3isPNV5RWSphdg0GGidKJ6XD4JLHjObHuxMVcIIaWFZ_k4BjkNIljzSVUmE"
             />
           </div>
@@ -65,7 +65,7 @@ const Home = () => {
           <div className="mt-12 text-center">
             <Link
               to="/productos"
-              className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-colors"
+              className="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-all duration-500 hover:scale-105 hover:shadow-lg transform"
             >
               Ver Todos los Productos
             </Link>

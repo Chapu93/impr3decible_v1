@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import { useCart } from '../context/CartContext'
 
@@ -6,6 +7,27 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme()
   const { getCartItemsCount } = useCart()
   const cartCount = getCartItemsCount()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+    setMobileMenuOpen(false)
+  }
 
   return (
     <header className="bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-light dark:border-border-dark transition-colors duration-300">
@@ -30,31 +52,31 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-8">
             <Link
               to="/"
-              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300"
+              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-500 hover:scale-110"
             >
               Inicio
             </Link>
             <Link
               to="/productos"
-              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300"
+              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-500 hover:scale-110"
             >
               Productos
             </Link>
-            <a
-              href="#proyectos"
-              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300"
+            <button
+              onClick={() => scrollToSection('proyectos')}
+              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-500 hover:scale-110"
             >
               Proyectos
-            </a>
-            <a
-              href="#testimonios"
-              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300"
+            </button>
+            <button
+              onClick={() => scrollToSection('testimonios')}
+              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-500 hover:scale-110"
             >
               Testimonios
-            </a>
+            </button>
             <Link
               to="/cotizar"
-              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors duration-300"
+              className="text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-500 hover:scale-110"
             >
               Cotizar
             </Link>
@@ -63,20 +85,20 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <Link
               to="/carrito"
-              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-500 hover:scale-110"
             >
               <span className="material-symbols-outlined text-gray-700 dark:text-gray-300">
                 shopping_cart
               </span>
               {cartCount > 0 && (
-                <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
+                <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-white animate-pulse">
                   {cartCount}
                 </span>
               )}
             </Link>
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-500 hover:scale-110 hover:rotate-180"
               aria-label="Cambiar tema"
             >
               {theme === 'light' ? (
@@ -85,7 +107,59 @@ const Header = () => {
                 <span className="material-symbols-outlined text-gray-300">light_mode</span>
               )}
             </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
+              aria-label="Menú"
+            >
+              <span className="material-symbols-outlined text-gray-700 dark:text-gray-300">
+                {mobileMenuOpen ? 'close' : 'menu'}
+              </span>
+            </button>
           </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+            mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <nav className="py-4 space-y-2">
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
+            >
+              Inicio
+            </Link>
+            <Link
+              to="/productos"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
+            >
+              Productos
+            </Link>
+            <button
+              onClick={() => scrollToSection('proyectos')}
+              className="block w-full text-left py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
+            >
+              Proyectos
+            </button>
+            <button
+              onClick={() => scrollToSection('testimonios')}
+              className="block w-full text-left py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
+            >
+              Testimonios
+            </button>
+            <Link
+              to="/cotizar"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
+            >
+              Cotizar
+            </Link>
+          </nav>
         </div>
       </div>
     </header>

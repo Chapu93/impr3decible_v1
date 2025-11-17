@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       to={`/producto/${product.id}`}
-      className="group flex flex-col overflow-hidden rounded-lg bg-background-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-md hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-shadow duration-300"
+      className="group flex flex-col overflow-hidden rounded-lg bg-background-light dark:bg-surface-dark border border-border-light dark:border-border-dark shadow-md hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
     >
       <div className="overflow-hidden">
         <img
@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
           <span className="text-lg font-bold text-primary">${product.price.toFixed(2)}</span>
           <button
             onClick={handleAddToCart}
-            className="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-colors flex items-center gap-2"
+            className="bg-primary text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-orange-600 transition-all duration-500 hover:scale-105 hover:shadow-lg flex items-center gap-2"
           >
             <span className="material-symbols-outlined text-base">add_shopping_cart</span>
             <span>Añadir</span>
