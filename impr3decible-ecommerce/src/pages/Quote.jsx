@@ -28,7 +28,7 @@ const Quote = () => {
   if (submitted) {
     return (
       <div className="container mx-auto px-6 py-12">
-        <div className="max-w-2xl mx-auto text-center py-16 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+        <div className="max-w-2xl mx-auto text-center py-16 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark animate-scale-in">
           <span className="material-symbols-outlined text-8xl text-green-500">check_circle</span>
           <h2 className="mt-6 text-3xl font-bold text-text-light dark:text-text-dark">
             ¡Solicitud Enviada!
@@ -47,7 +47,7 @@ const Quote = () => {
                 message: '',
               })
             }}
-            className="mt-8 bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 transition-colors"
+            className="mt-8 bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-600 hover:scale-105 transition-all duration-500"
           >
             Enviar Otra Solicitud
           </button>
@@ -59,7 +59,7 @@ const Quote = () => {
   return (
     <section className="py-20 md:py-24 bg-background-light dark:bg-background-dark transition-colors duration-300">
       <div className="container mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto opacity-0 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-bold text-text-light dark:text-text-dark">
             Inicia tu Proyecto de Impresión 3D
           </h2>
@@ -67,9 +67,9 @@ const Quote = () => {
             Sube tu modelo, elige tus especificaciones y obtén una cotización instantánea. Es así de simple.
           </p>
         </div>
-        <div className="mt-12 max-w-4xl mx-auto bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-lg border border-border-light dark:border-border-dark shadow-xl">
+        <div className="mt-12 max-w-4xl mx-auto bg-surface-light dark:bg-surface-dark p-8 md:p-12 rounded-lg border border-border-light dark:border-border-dark shadow-xl opacity-0 animate-fade-in-up animation-delay-200">
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
+            <div className="space-y-6 opacity-0 animate-fade-in animation-delay-300">
               <div>
                 <label
                   className="block text-sm font-medium mb-2 text-text-light dark:text-text-dark"
@@ -77,7 +77,7 @@ const Quote = () => {
                 >
                   1. Sube tu modelo 3D
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg hover:border-primary transition-colors">
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg hover:border-primary transition-all duration-500">
                   <div className="space-y-1 text-center">
                     <span className="material-symbols-outlined text-4xl text-text-muted-light dark:text-text-muted-dark">
                       upload_file
@@ -138,7 +138,7 @@ const Quote = () => {
                 </select>
               </div>
             </div>
-            <div className="space-y-6 flex flex-col">
+            <div className="space-y-6 flex flex-col opacity-0 animate-fade-in animation-delay-400">
               <div>
                 <label
                   className="block text-sm font-medium mb-2 text-text-light dark:text-text-dark"
