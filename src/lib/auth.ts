@@ -12,38 +12,52 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('Email y contraseña son requeridos')
-        }
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            console.error('❌ Credenciales faltantes')
+            return null
+          }
 
-        // Buscar admin en la base de datos
-        const admin = await db.admin.findUnique({
-          where: { email: credentials.email },
-          include: { company: true },
-        })
+          console.log('🔍 Buscando admin:', credentials.email)
 
-        if (!admin) {
-          throw new Error('Credenciales inválidas')
-        }
+          // Buscar admin en la base de datos
+          const admin = await db.admin.findUnique({
+            where: { email: credentials.email },
+            include: { company: true },
+          })
 
-        // Verificar contraseña
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          admin.password
-        )
+          if (!admin) {
+            console.error('❌ Admin no encontrado')
+            return null
+          }
 
-        if (!isPasswordValid) {
-          throw new Error('Credenciales inválidas')
-        }
+          console.log('✅ Admin encontrado:', admin.email)
 
-        // Retornar usuario
-        return {
-          id: admin.id,
-          email: admin.email,
-          name: admin.name,
-          role: admin.role,
-          companyId: admin.companyId,
-          companyName: admin.company?.name,
+          // Verificar contraseña
+          const isPasswordValid = await bcrypt.compare(
+            credentials.password,
+            admin.password
+          )
+
+          if (!isPasswordValid) {
+            console.error('❌ Contraseña inválida')
+            return null
+          }
+
+          console.log('✅ Autenticación exitosa')
+
+          // Retornar usuario
+          return {
+            id: admin.id,
+            email: admin.email,
+            name: admin.name,
+            role: admin.role,
+            companyId: admin.companyId,
+            companyName: admin.company?.name,
+          }
+        } catch (error) {
+          console.error('❌ Error en authorize:', error)
+          return null
         }
       },
     }),
