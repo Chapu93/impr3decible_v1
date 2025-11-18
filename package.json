@@ -24,7 +24,9 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     
-    "setup": "bash scripts/setup-local.sh",
+    "setup": "node scripts/setup-runner.js",
+    "setup:windows": "powershell -ExecutionPolicy Bypass -File scripts/setup-local.ps1",
+    "setup:unix": "bash scripts/setup-local.sh",
     "setup:minio": "node scripts/setup-minio.js"
   },
   "dependencies": {
