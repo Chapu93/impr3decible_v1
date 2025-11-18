@@ -1,0 +1,371 @@
+// Prisma Schema para SaaS Website Builder
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// USUARIOS Y AUTENTICACIÓN
+// ============================================
+
+// Usuarios Admin de la plataforma
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String   // Hasheado con bcrypt
+  role      AdminRole @default(ADMIN)
+  avatar    String?
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@map("admins")
+}
+
+enum AdminRole {
+  SUPER_ADMIN  // Control total del sistema
+  ADMIN        // Administra su empresa
+  SUPPORT      // Soporte técnico
+}
+
+// Empresa/Agencia que usa la plataforma
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  logo        String?
+  domain      String?  @unique
+  plan        Plan     @default(FREE)
+  maxClients  Int      @default(10)
+  maxSites    Int      @default(10)
+  admins      Admin[]
+  clients     Client[]
+  customTemplates Template[] @relation("CompanyTemplates")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([slug])
+  @@map("companies")
+}
+
+enum Plan {
+  FREE
+  BASIC
+  PRO
+  ENTERPRISE
+}
+
+// Clientes finales (compran sitios web)
+model Client {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  phone     String?
+  avatar    String?
+  password  String   // Hasheado
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  sites     Site[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastLoginAt DateTime?
+
+  @@index([email])
+  @@index([companyId])
+  @@map("clients")
+}
+
+// ============================================
+// PLANTILLAS
+// ============================================
+
+model Template {
+  id          String       @id @default(cuid())
+  name        String
+  slug        String       @unique
+  type        TemplateType
+  description String?
+  thumbnail   String?
+  previewUrl  String?
+  isPublic    Boolean      @default(true)  // Visible para todos
+  companyId   String?      // null = plantilla global
+  company     Company?     @relation("CompanyTemplates", fields: [companyId], references: [id])
+  
+  // Configuración de la plantilla
+  config      Json         // Valores por defecto
+  schema      Json         // Schema de personalización (qué se puede editar)
+  
+  sites       Site[]
+  pages       TemplatePage[]
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([slug])
+  @@index([type])
+  @@index([companyId])
+  @@map("templates")
+}
+
+enum TemplateType {
+  ECOMMERCE
+  LANDING
+  BLOG
+  PORTFOLIO
+  RESTAURANT
+  REAL_ESTATE
+}
+
+// Páginas de una plantilla
+model TemplatePage {
+  id          String   @id @default(cuid())
+  templateId  String
+  template    Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  slug        String
+  title       String
+  description String?
+  content     Json     // Estructura de la página
+  isHome      Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([templateId, slug])
+  @@index([templateId])
+  @@map("template_pages")
+}
+
+// ============================================
+// SITIOS WEB
+// ============================================
+
+model Site {
+  id          String      @id @default(cuid())
+  name        String
+  subdomain   String      @unique
+  customDomain String?    @unique
+  
+  // Relaciones
+  clientId    String
+  client      Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  templateId  String
+  template    Template    @relation(fields: [templateId], references: [id])
+  
+  // Configuración personalizada por el cliente
+  config      Json        // Override de config del template
+  
+  // Estado
+  status      SiteStatus  @default(DRAFT)
+  publishedAt DateTime?
+  
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  favicon         String?
+  
+  // Contenido
+  products    Product[]
+  pages       Page[]
+  media       Media[]
+  
+  // Analytics
+  views       Int         @default(0)
+  lastViewAt  DateTime?
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([subdomain])
+  @@index([customDomain])
+  @@index([clientId])
+  @@index([status])
+  @@map("sites")
+}
+
+enum SiteStatus {
+  DRAFT      // Borrador
+  PUBLISHED  // Publicado
+  SUSPENDED  // Suspendido
+  ARCHIVED   // Archivado
+}
+
+// ============================================
+// PÁGINAS PERSONALIZADAS
+// ============================================
+
+model Page {
+  id          String   @id @default(cuid())
+  siteId      String
+  site        Site     @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  slug        String
+  title       String
+  content     Json     // Contenido editable
+  
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  metaImage       String?
+  
+  // Estado
+  isPublished Boolean  @default(true)
+  order       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([siteId, slug])
+  @@index([siteId])
+  @@map("pages")
+}
+
+// ============================================
+// PRODUCTOS (E-COMMERCE)
+// ============================================
+
+model Product {
+  id          String   @id @default(cuid())
+  siteId      String
+  site        Site     @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  
+  // Información básica
+  name        String
+  slug        String
+  description String   @db.Text
+  price       Decimal  @db.Decimal(10, 2)
+  compareAtPrice Decimal? @db.Decimal(10, 2)
+  
+  // Inventario
+  sku         String?
+  stock       Int      @default(0)
+  trackStock  Boolean  @default(true)
+  
+  // Categorización
+  category    String
+  tags        String[] // Array de tags
+  
+  // Media
+  images      Json     // Array de URLs
+  
+  // Estado
+  isActive    Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  
+  // Metadata adicional
+  metadata    Json?    // Campos personalizados
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([siteId, slug])
+  @@index([siteId])
+  @@index([category])
+  @@index([isActive])
+  @@map("products")
+}
+
+// ============================================
+// MEDIA / ARCHIVOS
+// ============================================
+
+model Media {
+  id          String    @id @default(cuid())
+  siteId      String
+  site        Site      @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  
+  // Información del archivo
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int       // Bytes
+  url         String
+  
+  // Metadata
+  width       Int?
+  height      Int?
+  alt         String?
+  
+  // Organización
+  folder      String    @default("/")
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([siteId])
+  @@index([folder])
+  @@map("media")
+}
+
+// ============================================
+// ANALYTICS & LOGS
+// ============================================
+
+model Analytics {
+  id          String   @id @default(cuid())
+  siteId      String
+  
+  // Datos del evento
+  event       String   // pageview, click, conversion, etc.
+  page        String?
+  referrer    String?
+  
+  // User agent
+  browser     String?
+  os          String?
+  device      String?
+  
+  // Geolocalización
+  country     String?
+  city        String?
+  
+  // IP (hasheado por privacidad)
+  ipHash      String?
+  
+  createdAt   DateTime @default(now())
+
+  @@index([siteId, createdAt])
+  @@index([event])
+  @@map("analytics")
+}
+
+// ============================================
+// ACTIVITY LOG
+// ============================================
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  
+  // Actor
+  actorType   ActorType
+  actorId     String
+  actorEmail  String?
+  
+  // Acción
+  action      String   // created, updated, deleted, published, etc.
+  entity      String   // site, product, page, etc.
+  entityId    String
+  
+  // Metadata
+  metadata    Json?
+  ipAddress   String?
+  userAgent   String?
+  
+  createdAt   DateTime @default(now())
+
+  @@index([actorType, actorId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@map("activity_logs")
+}
+
+enum ActorType {
+  ADMIN
+  CLIENT
+  SYSTEM
+}
