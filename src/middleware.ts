@@ -13,26 +13,39 @@ export function middleware(request: NextRequest) {
   const parts = hostnameWithoutPort.split('.')
   const subdomain = parts[0]
 
-  console.log('🔍 Middleware:', { hostname, subdomain, pathname: url.pathname })
+  console.log('🔍 Middleware:', { 
+    hostname, 
+    hostnameWithoutPort,
+    subdomain, 
+    parts,
+    pathname: url.pathname 
+  })
 
-  // Admin panel
-  if (subdomain === 'admin') {
+  // Admin panel - admin.localhost
+  if (subdomain === 'admin' && parts.length > 1) {
+    console.log('🏢 Redirigiendo a admin')
     url.pathname = `/admin${url.pathname}`
     return NextResponse.rewrite(url)
   }
 
-  // Client panel
-  if (subdomain === 'panel') {
+  // Client panel - panel.localhost
+  if (subdomain === 'panel' && parts.length > 1) {
+    console.log('👤 Redirigiendo a client')
     url.pathname = `/client${url.pathname}`
     return NextResponse.rewrite(url)
   }
 
-  // Demo site y otros subdominios (excepto localhost solo)
-  if (subdomain !== 'localhost' && parts.length > 1) {
-    // Reescribir a la ruta correcta de Next.js
-    const newPath = url.pathname === '/' ? '' : url.pathname
-    url.pathname = `/${subdomain}${newPath}`
-    console.log('🌐 Reescribiendo a:', url.pathname)
+  // Demo site - demo.localhost
+  if (subdomain === 'demo' && parts.length > 1) {
+    console.log('🌐 Redirigiendo a demo')
+    url.pathname = `/demo${url.pathname}`
+    return NextResponse.rewrite(url)
+  }
+
+  // Otros subdominios (cliente1, cliente2, etc.)
+  if (subdomain !== 'localhost' && parts.length > 1 && subdomain !== 'admin' && subdomain !== 'panel' && subdomain !== 'demo') {
+    console.log('🌍 Redirigiendo a subdominio dinámico:', subdomain)
+    url.pathname = `/${subdomain}${url.pathname}`
     return NextResponse.rewrite(url)
   }
 
