@@ -92,10 +92,15 @@ else {
 # Paso 2: Instalar dependencias
 Write-Host ""
 Write-Host "Paso 2: Instalando dependencias..." -ForegroundColor Yellow
-npm install
+npm install --legacy-peer-deps
 if ($LASTEXITCODE -ne 0) {
     Write-Host "ERROR: Fallo la instalacion de dependencias" -ForegroundColor Red
-    exit 1
+    Write-Host "Intentando con --force..." -ForegroundColor Yellow
+    npm install --force
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ERROR: No se pudieron instalar las dependencias" -ForegroundColor Red
+        exit 1
+    }
 }
 Write-Host "OK: Dependencias instaladas" -ForegroundColor Green
 
