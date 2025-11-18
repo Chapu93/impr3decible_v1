@@ -25,11 +25,22 @@ Write-Host "✅ Docker está instalado" -ForegroundColor $GREEN
 
 # Verificar que Docker está corriendo
 Write-Host "Verificando que Docker está corriendo..." -ForegroundColor $YELLOW
+$dockerRunning = $false
 try {
-    docker ps | Out-Null
-    Write-Host "✅ Docker está corriendo" -ForegroundColor $GREEN
+    $null = docker ps 2>&1
+    if ($LASTEXITCODE -eq 0) {
+        $dockerRunning = $true
+        Write-Host "✅ Docker está corriendo" -ForegroundColor $GREEN
+    }
 } catch {
+    # Error capturado
+}
+
+if (-not $dockerRunning) {
     Write-Host "❌ Docker no está corriendo. Por favor inicia Docker Desktop." -ForegroundColor $RED
+    Write-Host "   1. Abre Docker Desktop" -ForegroundColor $YELLOW
+    Write-Host "   2. Espera a que el icono sea verde" -ForegroundColor $YELLOW
+    Write-Host "   3. Vuelve a ejecutar: npm run setup" -ForegroundColor $YELLOW
     exit 1
 }
 
