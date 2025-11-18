@@ -8,24 +8,64 @@ Write-Host ""
 
 # Verificar Docker
 Write-Host "Verificando Docker..." -ForegroundColor Yellow
-if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
-    Write-Host "ERROR: Docker no esta instalado." -ForegroundColor Red
-    Write-Host "Descarga: https://www.docker.com/products/docker-desktop" -ForegroundColor Yellow
-    exit 1
+$dockerInstalled = $false
+$dockerCommand = $null
+
+# Intentar diferentes formas de encontrar docker
+try {
+    $dockerCommand = Get-Command docker -ErrorAction SilentlyContinue
+    if ($dockerCommand) {
+        $dockerInstalled = $true
+    }
+} catch {
+    # Intentar ejecutar docker directamente
+    try {
+        $null = & docker --version 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            $dockerInstalled = $true
+        }
+    } catch {
+        $dockerInstalled = $false
+    }
 }
-Write-Host "OK: Docker esta instalado" -ForegroundColor Green
+
+if (-not $dockerInstalled) {
+    Write-Host "ERROR: Docker no esta instalado o no se encuentra en PATH." -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Opciones:" -ForegroundColor Yellow
+    Write-Host "1. Descarga Docker Desktop: https://www.docker.com/products/docker-desktop" -ForegroundColor Cyan
+    Write-Host "2. Si ya esta instalado, reinicia PowerShell" -ForegroundColor Cyan
+    Write-Host "3. Si ya esta instalado, verifica que Docker Desktop este abierto" -ForegroundColor Cyan
+    Write-Host ""
+    $continuar = Read-Host "Docker esta instalado pero no detectado? Continuar de todos modos? (S/N)"
+    if (($continuar -ne "S") -and ($continuar -ne "s")) {
+        exit 1
+    }
+}
+else {
+    Write-Host "OK: Docker esta instalado" -ForegroundColor Green
+}
 
 # Verificar que Docker esta corriendo
 Write-Host "Verificando que Docker esta corriendo..." -ForegroundColor Yellow
-$dockerTest = docker ps 2>&1
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "ERROR: Docker no esta corriendo." -ForegroundColor Red
-    Write-Host "1. Abre Docker Desktop" -ForegroundColor Yellow
-    Write-Host "2. Espera a que el icono sea verde" -ForegroundColor Yellow
-    Write-Host "3. Vuelve a ejecutar: npm run setup" -ForegroundColor Yellow
+try {
+    $dockerTest = & docker ps 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ERROR: Docker no esta corriendo." -ForegroundColor Red
+        Write-Host ""
+        Write-Host "Pasos para iniciar Docker:" -ForegroundColor Yellow
+        Write-Host "1. Busca 'Docker Desktop' en el menu inicio" -ForegroundColor Cyan
+        Write-Host "2. Abrelo y espera a que el icono sea verde" -ForegroundColor Cyan
+        Write-Host "3. Vuelve a ejecutar: npm run setup" -ForegroundColor Cyan
+        Write-Host ""
+        exit 1
+    }
+    Write-Host "OK: Docker esta corriendo" -ForegroundColor Green
+} catch {
+    Write-Host "ERROR: No se puede ejecutar docker ps" -ForegroundColor Red
+    Write-Host "Asegurate de que Docker Desktop esta corriendo" -ForegroundColor Yellow
     exit 1
 }
-Write-Host "OK: Docker esta corriendo" -ForegroundColor Green
 
 # Verificar Node.js
 Write-Host ""
