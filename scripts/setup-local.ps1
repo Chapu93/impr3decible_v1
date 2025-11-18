@@ -89,6 +89,15 @@ else {
     Write-Host "INFO: .env.local ya existe" -ForegroundColor Cyan
 }
 
+# Prisma necesita .env (no .env.local)
+if (-not (Test-Path .env)) {
+    Copy-Item .env.example .env
+    Write-Host "OK: Archivo .env creado para Prisma" -ForegroundColor Green
+}
+else {
+    Write-Host "INFO: .env ya existe" -ForegroundColor Cyan
+}
+
 # Paso 2: Instalar dependencias
 Write-Host ""
 Write-Host "Paso 2: Instalando dependencias..." -ForegroundColor Yellow
