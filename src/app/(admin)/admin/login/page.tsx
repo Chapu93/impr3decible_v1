@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function AdminLoginPage() {
@@ -17,19 +16,23 @@ export default function AdminLoginPage() {
     setLoading(true)
 
     try {
-      const result = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       })
 
-      if (result?.error) {
-        setError('Credenciales inválidas')
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Credenciales inválidas')
       } else {
+        console.log('✅ Login exitoso, redirigiendo...')
         router.push('/admin/dashboard')
         router.refresh()
       }
     } catch (err) {
+      console.error('Error en login:', err)
       setError('Error al iniciar sesión')
     } finally {
       setLoading(false)
