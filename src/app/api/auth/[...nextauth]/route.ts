@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import { authOptions } from '@/lib/auth'
 
-console.log('🔧 Inicializando NextAuth handler...')
+console.log('🔧 NextAuth route loaded!')
 
 const handler = NextAuth(authOptions)
 
