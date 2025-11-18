@@ -2,11 +2,18 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  // Obtener hostname (puede incluir puerto)
   const hostname = request.headers.get('host') || ''
   const url = request.nextUrl.clone()
 
+  // Remover puerto si existe
+  const hostnameWithoutPort = hostname.split(':')[0]
+  
   // Detectar subdominio
-  const subdomain = hostname.split('.')[0]
+  const parts = hostnameWithoutPort.split('.')
+  const subdomain = parts[0]
+
+  console.log('🔍 Middleware:', { hostname, subdomain, pathname: url.pathname })
 
   // Admin panel
   if (subdomain === 'admin') {
@@ -20,8 +27,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  // Demo site o cualquier otro subdominio que no sea localhost
-  if (subdomain !== 'localhost' && !subdomain.includes('localhost')) {
+  // Demo site y otros subdominios (excepto localhost solo)
+  if (subdomain !== 'localhost' && parts.length > 1) {
     url.pathname = `/site/${subdomain}${url.pathname}`
     return NextResponse.rewrite(url)
   }
