@@ -1,7 +1,6 @@
 export default function AdminDashboard() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -127,15 +126,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Logout Button */}
-        <div className="mt-8 text-center">
-          <a
-            href="/api/auth/logout"
-            className="inline-block px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
-          >
-            Cerrar Sesión
-          </a>
-        </div>
       </div>
     </div>
   )
