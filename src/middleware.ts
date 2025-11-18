@@ -29,7 +29,10 @@ export function middleware(request: NextRequest) {
 
   // Demo site y otros subdominios (excepto localhost solo)
   if (subdomain !== 'localhost' && parts.length > 1) {
-    url.pathname = `/site/${subdomain}${url.pathname}`
+    // Reescribir a la ruta correcta de Next.js
+    const newPath = url.pathname === '/' ? '' : url.pathname
+    url.pathname = `/${subdomain}${newPath}`
+    console.log('🌐 Reescribiendo a:', url.pathname)
     return NextResponse.rewrite(url)
   }
 
