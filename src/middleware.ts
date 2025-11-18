@@ -5,6 +5,17 @@ export function middleware(request: NextRequest) {
   // Obtener hostname (puede incluir puerto)
   const hostname = request.headers.get('host') || ''
   const url = request.nextUrl.clone()
+  const pathname = url.pathname
+
+  // IMPORTANTE: NO tocar rutas API, _next, static files, etc.
+  if (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/static') ||
+    pathname.includes('.')
+  ) {
+    return NextResponse.next()
+  }
 
   // Remover puerto si existe
   const hostnameWithoutPort = hostname.split(':')[0]
@@ -18,34 +29,34 @@ export function middleware(request: NextRequest) {
     hostnameWithoutPort,
     subdomain, 
     parts,
-    pathname: url.pathname 
+    pathname 
   })
 
   // Admin panel - admin.localhost
   if (subdomain === 'admin' && parts.length > 1) {
     console.log('🏢 Redirigiendo a admin')
-    url.pathname = `/admin${url.pathname}`
+    url.pathname = `/admin${pathname}`
     return NextResponse.rewrite(url)
   }
 
   // Client panel - panel.localhost
   if (subdomain === 'panel' && parts.length > 1) {
     console.log('👤 Redirigiendo a client')
-    url.pathname = `/client${url.pathname}`
+    url.pathname = `/client${pathname}`
     return NextResponse.rewrite(url)
   }
 
   // Demo site - demo.localhost
   if (subdomain === 'demo' && parts.length > 1) {
     console.log('🌐 Redirigiendo a demo')
-    url.pathname = `/demo${url.pathname}`
+    url.pathname = `/demo${pathname}`
     return NextResponse.rewrite(url)
   }
 
   // Otros subdominios (cliente1, cliente2, etc.)
   if (subdomain !== 'localhost' && parts.length > 1 && subdomain !== 'admin' && subdomain !== 'panel' && subdomain !== 'demo') {
     console.log('🌍 Redirigiendo a subdominio dinámico:', subdomain)
-    url.pathname = `/${subdomain}${url.pathname}`
+    url.pathname = `/${subdomain}${pathname}`
     return NextResponse.rewrite(url)
   }
 
