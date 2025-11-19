@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Search, Bell } from 'lucide-react'
 
 interface User {
   name: string
@@ -29,9 +30,7 @@ export function Header() {
         {/* Search Bar */}
         <div className="flex-1 max-w-xl">
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">
-              🔍
-            </span>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" strokeWidth={2} />
             <input
               type="search"
               placeholder="Buscar clientes, sitios, plantillas..."
@@ -44,7 +43,7 @@ export function Header() {
         <div className="flex items-center space-x-4 ml-8">
           {/* Notifications */}
           <button className="relative p-3 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all group">
-            <span className="text-2xl">🔔</span>
+            <Bell className="w-6 h-6" strokeWidth={2} />
             <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
             <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full group-hover:scale-150 transition-transform"></span>
           </button>

@@ -1,3 +1,5 @@
+import { Users, Globe, Palette, Package, CheckCircle2, Clock, TrendingUp } from 'lucide-react'
+
 export default function AdminDashboard() {
   return (
     <div className="max-w-7xl mx-auto">
@@ -7,7 +9,7 @@ export default function AdminDashboard() {
           Dashboard
         </h1>
         <p className="text-gray-400 text-lg">
-          Bienvenido de nuevo, Admin 👋
+          Bienvenido de nuevo, Admin
         </p>
       </div>
 
@@ -16,23 +18,25 @@ export default function AdminDashboard() {
         <div className="group relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-purple-500/20 rounded-xl">
-              <span className="text-3xl">👥</span>
+              <Users className="w-7 h-7 text-purple-400" strokeWidth={2} />
             </div>
             <div className="px-3 py-1 bg-green-500/20 rounded-full">
-              <span className="text-xs font-semibold text-green-400">+12%</span>
+              <span className="text-xs font-semibold text-green-400 flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" /> +12%
+              </span>
             </div>
           </div>
           <h3 className="text-sm font-medium text-gray-400 mb-2">Total Clientes</h3>
           <p className="text-4xl font-bold text-white mb-2">1</p>
           <p className="text-sm text-green-400 flex items-center gap-1">
-            <span>✓</span> Activo
+            <CheckCircle2 className="w-4 h-4" /> Activo
           </p>
         </div>
 
         <div className="group relative bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-blue-500/20 rounded-xl">
-              <span className="text-3xl">🌐</span>
+              <Globe className="w-7 h-7 text-blue-400" strokeWidth={2} />
             </div>
             <div className="px-3 py-1 bg-blue-500/20 rounded-full">
               <span className="text-xs font-semibold text-blue-400">Online</span>
@@ -41,14 +45,14 @@ export default function AdminDashboard() {
           <h3 className="text-sm font-medium text-gray-400 mb-2">Sitios Web</h3>
           <p className="text-4xl font-bold text-white mb-2">1</p>
           <p className="text-sm text-blue-400 flex items-center gap-1">
-            <span>✓</span> Publicado
+            <CheckCircle2 className="w-4 h-4" /> Publicado
           </p>
         </div>
 
         <div className="group relative bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-orange-500/20 rounded-xl">
-              <span className="text-3xl">🎨</span>
+              <Palette className="w-7 h-7 text-orange-400" strokeWidth={2} />
             </div>
             <div className="px-3 py-1 bg-orange-500/20 rounded-full">
               <span className="text-xs font-semibold text-orange-400">Nuevo</span>
@@ -57,14 +61,14 @@ export default function AdminDashboard() {
           <h3 className="text-sm font-medium text-gray-400 mb-2">Plantillas</h3>
           <p className="text-4xl font-bold text-white mb-2">1</p>
           <p className="text-sm text-orange-400 flex items-center gap-1">
-            <span>✓</span> E-commerce
+            <CheckCircle2 className="w-4 h-4" /> E-commerce
           </p>
         </div>
 
         <div className="group relative bg-gradient-to-br from-pink-500/10 to-rose-500/10 backdrop-blur-xl border border-pink-500/20 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-pink-500/20">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-pink-500/20 rounded-xl">
-              <span className="text-3xl">📦</span>
+              <Package className="w-7 h-7 text-pink-400" strokeWidth={2} />
             </div>
             <div className="px-3 py-1 bg-pink-500/20 rounded-full">
               <span className="text-xs font-semibold text-pink-400">Demo</span>
@@ -73,7 +77,7 @@ export default function AdminDashboard() {
           <h3 className="text-sm font-medium text-gray-400 mb-2">Productos</h3>
           <p className="text-4xl font-bold text-white mb-2">3</p>
           <p className="text-sm text-pink-400 flex items-center gap-1">
-            <span>✓</span> En catálogo
+            <CheckCircle2 className="w-4 h-4" /> En catálogo
           </p>
         </div>
       </div>
@@ -83,7 +87,7 @@ export default function AdminDashboard() {
         <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
         <div className="relative flex items-start gap-4">
           <div className="p-4 bg-green-500/20 rounded-2xl">
-            <span className="text-5xl">🎉</span>
+            <CheckCircle2 className="w-12 h-12 text-green-400" strokeWidth={2} />
           </div>
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-white mb-2">
@@ -94,15 +98,15 @@ export default function AdminDashboard() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="flex items-center gap-2 text-green-400">
-                <span className="text-xl">✓</span>
+                <CheckCircle2 className="w-5 h-5" />
                 <span className="text-sm font-medium">Setup Completo</span>
               </div>
               <div className="flex items-center gap-2 text-green-400">
-                <span className="text-xl">✓</span>
+                <CheckCircle2 className="w-5 h-5" />
                 <span className="text-sm font-medium">Auth Funcionando</span>
               </div>
               <div className="flex items-center gap-2 text-blue-400">
-                <span className="text-xl">⏳</span>
+                <Clock className="w-5 h-5" />
                 <span className="text-sm font-medium">Métricas Reales</span>
               </div>
             </div>
@@ -118,7 +122,7 @@ export default function AdminDashboard() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-purple-500/20 rounded-2xl w-fit mb-4">
-                <span className="text-4xl">👥</span>
+                <Users className="w-10 h-10 text-purple-400" strokeWidth={2} />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">
                 Gestionar Clientes
@@ -136,7 +140,7 @@ export default function AdminDashboard() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-blue-500/20 rounded-2xl w-fit mb-4">
-                <span className="text-4xl">🌐</span>
+                <Globe className="w-10 h-10 text-blue-400" strokeWidth={2} />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">
                 Gestionar Sitios
@@ -154,7 +158,7 @@ export default function AdminDashboard() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-orange-500/20 rounded-2xl w-fit mb-4">
-                <span className="text-4xl">🎨</span>
+                <Palette className="w-10 h-10 text-orange-400" strokeWidth={2} />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">
                 Ver Plantillas

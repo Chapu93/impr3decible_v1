@@ -2,32 +2,33 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { LayoutDashboard, Users, Globe, Palette, BarChart3, LogOut, Building2 } from 'lucide-react'
 
 const menuItems = [
   {
     name: 'Dashboard',
     href: '/admin/dashboard',
-    icon: '📊',
+    icon: LayoutDashboard,
   },
   {
     name: 'Clientes',
     href: '/admin/clientes',
-    icon: '👥',
+    icon: Users,
   },
   {
     name: 'Sitios Web',
     href: '/admin/sitios',
-    icon: '🌐',
+    icon: Globe,
   },
   {
     name: 'Plantillas',
     href: '/admin/plantillas',
-    icon: '🎨',
+    icon: Palette,
   },
   {
     name: 'Analytics',
     href: '/admin/analytics',
-    icon: '📈',
+    icon: BarChart3,
   },
 ]
 
@@ -40,7 +41,7 @@ export function Sidebar() {
       <div className="p-6 border-b border-gray-800/50">
         <Link href="/admin/dashboard" className="flex items-center space-x-3 group">
           <div className="p-2 bg-gradient-to-br from-orange-500 to-pink-600 rounded-xl group-hover:scale-110 transition-transform">
-            <span className="text-2xl">🏢</span>
+            <Building2 className="w-7 h-7 text-white" strokeWidth={2.5} />
           </div>
           <div>
             <h1 className="text-lg font-bold bg-gradient-to-r from-orange-400 to-pink-600 bg-clip-text text-transparent">
@@ -58,6 +59,7 @@ export function Sidebar() {
         <ul className="space-y-2">
           {menuItems.map((item) => {
             const isActive = pathname === item.href
+            const Icon = item.icon
             return (
               <li key={item.href}>
                 <Link
@@ -68,7 +70,7 @@ export function Sidebar() {
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-105'
                   }`}
                 >
-                  <span className="text-xl">{item.icon}</span>
+                  <Icon className="w-5 h-5" strokeWidth={2} />
                   <span className="font-medium">{item.name}</span>
                 </Link>
               </li>
@@ -84,7 +86,7 @@ export function Sidebar() {
             type="submit"
             className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl hover:scale-105 transition-all duration-300 border border-red-500/20"
           >
-            <span>🚪</span>
+            <LogOut className="w-5 h-5" strokeWidth={2} />
             <span className="font-semibold">Cerrar Sesión</span>
           </button>
         </form>
