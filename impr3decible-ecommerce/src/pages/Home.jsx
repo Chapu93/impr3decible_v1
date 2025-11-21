@@ -2,8 +2,16 @@ import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import Parallax from '../components/Parallax'
 import { products } from '../data/products'
+import { useSEO } from '../hooks/useSEO'
 
 const Home = () => {
+  useSEO({
+    title: 'Inicio',
+    description: 'Servicios profesionales de impresión 3D. Transformamos tus diseños digitales en objetos físicos de alta calidad. Prototipos, piezas funcionales y más.',
+    keywords: 'impresión 3D, servicios 3D, prototipos, fabricación aditiva, PLA, ABS, PETG, resina',
+    url: window.location.origin + '/'
+  })
+
   const featuredProducts = products.slice(0, 4)
 
   return (

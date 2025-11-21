@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import { useCart } from '../context/CartContext'
+import { useWishlist } from '../context/WishlistContext'
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme()
   const { getCartItemsCount } = useCart()
+  const { wishlistItems } = useWishlist()
   const cartCount = getCartItemsCount()
+  const wishlistCount = wishlistItems.length
   const navigate = useNavigate()
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -84,8 +87,23 @@ const Header = () => {
 
           <div className="flex items-center gap-4">
             <Link
+              to="/favoritos"
+              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-500 hover:scale-110"
+              aria-label="Favoritos"
+            >
+              <span className="material-symbols-outlined text-gray-700 dark:text-gray-300">
+                favorite
+              </span>
+              {wishlistCount > 0 && (
+                <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white animate-pulse">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+            <Link
               to="/carrito"
               className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-500 hover:scale-110"
+              aria-label="Carrito"
             >
               <span className="material-symbols-outlined text-gray-700 dark:text-gray-300">
                 shopping_cart
@@ -158,6 +176,18 @@ const Header = () => {
               className="block py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2"
             >
               Cotizar
+            </Link>
+            <Link
+              to="/favoritos"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-sm font-semibold text-text-light dark:text-text-dark hover:text-primary transition-all duration-300 hover:pl-2 flex items-center gap-2"
+            >
+              Favoritos
+              {wishlistCount > 0 && (
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
           </nav>
         </div>
