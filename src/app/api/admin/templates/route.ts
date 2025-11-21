@@ -22,3 +22,47 @@ export async function GET(request: NextRequest) {
     )
   }
 }
+
+// POST - Crear nueva plantilla
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { name, description, type, thumbnail, defaultConfig, schema } = body
+
+    // Validar campos requeridos
+    if (!name || !type) {
+      return NextResponse.json(
+        { error: 'Nombre y tipo son requeridos' },
+        { status: 400 }
+      )
+    }
+
+    // Crear plantilla
+    const template = await prisma.template.create({
+      data: {
+        name,
+        description: description || null,
+        type,
+        thumbnail: thumbnail || null,
+        defaultConfig: defaultConfig || {},
+        schema: schema || {}
+      },
+      include: {
+        _count: {
+          select: { sites: true }
+        }
+      }
+    })
+
+    return NextResponse.json(
+      { message: 'Plantilla creada exitosamente', template },
+      { status: 201 }
+    )
+  } catch (error) {
+    console.error('Error creating template:', error)
+    return NextResponse.json(
+      { error: 'Error al crear plantilla' },
+      { status: 500 }
+    )
+  }
+}
