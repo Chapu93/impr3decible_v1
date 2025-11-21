@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useSEO } from '../hooks/useSEO'
 
 const Cart = () => {
+  useSEO({
+    title: 'Carrito de Compra',
+    description: 'Revisa y gestiona los productos en tu carrito de compra antes de finalizar tu pedido.',
+    keywords: 'carrito, compra, checkout',
+    url: window.location.origin + '/carrito'
+  })
   const { cartItems, removeFromCart, updateQuantity, getCartTotal } = useCart()
 
   if (cartItems.length === 0) {

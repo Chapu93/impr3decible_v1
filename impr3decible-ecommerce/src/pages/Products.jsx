@@ -3,8 +3,15 @@ import ProductCard from '../components/ProductCard'
 import SkeletonLoader from '../components/SkeletonLoader'
 import { products, categories } from '../data/products'
 import { useDebounce } from '../hooks/useDebounce'
+import { useSEO } from '../hooks/useSEO'
 
 const Products = () => {
+  useSEO({
+    title: 'Productos',
+    description: 'Explora nuestro catálogo completo de productos impresos en 3D. Figuras, soportes, macetas, llaveros y más. Personalizables en diferentes materiales y colores.',
+    keywords: 'productos 3D, figuras 3D, accesorios 3D, decoración 3D, regalos personalizados',
+    url: window.location.origin + '/productos'
+  })
   const [selectedCategory, setSelectedCategory] = useState('Todas')
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('relevance')

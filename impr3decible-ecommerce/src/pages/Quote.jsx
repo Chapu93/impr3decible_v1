@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { useToast } from '../context/ToastContext'
+import { useSEO } from '../hooks/useSEO'
 
 const Quote = () => {
+  useSEO({
+    title: 'Solicitar Cotización',
+    description: 'Sube tu modelo 3D y obtén una cotización personalizada. Selecciona material, acabado y especificaciones técnicas para tu proyecto.',
+    keywords: 'cotización 3D, presupuesto impresión 3D, upload STL, proyecto personalizado',
+    url: window.location.origin + '/cotizar'
+  })
   const { showToast } = useToast()
   const [formData, setFormData] = useState({
     name: '',

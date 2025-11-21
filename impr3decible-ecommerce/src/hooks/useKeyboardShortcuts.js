@@ -34,6 +34,12 @@ export const useKeyboardShortcuts = () => {
         navigate('/carrito')
       }
 
+      // Ctrl/Cmd + F para ir a favoritos
+      if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+        e.preventDefault()
+        navigate('/favoritos')
+      }
+
       // Ctrl/Cmd + / para mostrar ayuda de shortcuts
       if ((e.ctrlKey || e.metaKey) && e.key === '/') {
         e.preventDefault()
@@ -51,6 +57,7 @@ export const useKeyboardShortcuts = () => {
         'Ctrl/Cmd + K: Buscar productos',
         'Ctrl/Cmd + H: Ir a inicio',
         'Ctrl/Cmd + B: Ver carrito',
+        'Ctrl/Cmd + F: Ver favoritos',
         'Ctrl/Cmd + /: Ver atajos',
         'ESC: Ir arriba'
       ]

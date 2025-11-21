@@ -17,6 +17,8 @@ import ProjectDetail from './pages/ProjectDetail'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Quote from './pages/Quote'
+import Wishlist from './pages/Wishlist'
+import NotFound from './pages/NotFound'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -62,6 +64,8 @@ function App() {
                 <Route path="/carrito" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/cotizar" element={<Quote />} />
+                <Route path="/favoritos" element={<Wishlist />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
