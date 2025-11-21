@@ -28,7 +28,7 @@ export default function AdminLoginPage() {
         setError(data.error || 'Credenciales inválidas')
       } else {
         console.log('✅ Login exitoso, redirigiendo...')
-        router.push('/admin/dashboard')
+        router.push('/dashboard')
         router.refresh()
       }
     } catch (err) {

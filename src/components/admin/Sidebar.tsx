@@ -7,27 +7,27 @@ import { LayoutDashboard, Users, Globe, Palette, BarChart3, LogOut, Building2 } 
 const menuItems = [
   {
     name: 'Dashboard',
-    href: '/admin/dashboard',
+    href: '/dashboard',
     icon: LayoutDashboard,
   },
   {
     name: 'Clientes',
-    href: '/admin/clientes',
+    href: '/clientes',
     icon: Users,
   },
   {
     name: 'Sitios Web',
-    href: '/admin/sitios',
+    href: '/sitios',
     icon: Globe,
   },
   {
     name: 'Plantillas',
-    href: '/admin/plantillas',
+    href: '/plantillas',
     icon: Palette,
   },
   {
     name: 'Analytics',
-    href: '/admin/analytics',
+    href: '/analytics',
     icon: BarChart3,
   },
 ]
@@ -39,7 +39,7 @@ export function Sidebar() {
     <aside className="w-64 bg-gray-900/50 backdrop-blur-xl border-r border-gray-800/50 min-h-screen">
       {/* Logo */}
       <div className="p-6 border-b border-gray-800/50">
-        <Link href="/admin/dashboard" className="flex items-center space-x-3 group">
+        <Link href="/dashboard" className="flex items-center space-x-3 group">
           <div className="p-2 bg-gradient-to-br from-orange-500 to-pink-600 rounded-xl group-hover:scale-110 transition-transform">
             <Building2 className="w-7 h-7 text-white" strokeWidth={2.5} />
           </div>

@@ -232,7 +232,7 @@ export default function AdminDashboard() {
       <div className="mb-8">
         <h2 className="text-2xl font-bold text-white mb-6">Acciones Rápidas</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Link href="/admin/clientes" className="group relative overflow-hidden bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 text-left">
+          <Link href="/clientes" className="group relative overflow-hidden bg-gradient-to-br from-purple-500/10 to-purple-700/10 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-purple-500/20 rounded-2xl w-fit mb-4">
@@ -250,7 +250,7 @@ export default function AdminDashboard() {
             </div>
           </Link>
 
-          <Link href="/admin/sitios" className="group relative overflow-hidden bg-gradient-to-br from-blue-500/10 to-blue-700/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 text-left">
+          <Link href="/sitios" className="group relative overflow-hidden bg-gradient-to-br from-blue-500/10 to-blue-700/10 backdrop-blur-xl border border-blue-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-blue-500/20 rounded-2xl w-fit mb-4">
@@ -268,7 +268,7 @@ export default function AdminDashboard() {
             </div>
           </Link>
 
-          <Link href="/admin/plantillas" className="group relative overflow-hidden bg-gradient-to-br from-orange-500/10 to-orange-700/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 text-left">
+          <Link href="/plantillas" className="group relative overflow-hidden bg-gradient-to-br from-orange-500/10 to-orange-700/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-8 hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/20 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl group-hover:w-64 group-hover:h-64 transition-all duration-500"></div>
             <div className="relative">
               <div className="p-4 bg-orange-500/20 rounded-2xl w-fit mb-4">
