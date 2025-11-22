@@ -246,8 +246,15 @@ async function main() {
   ]
 
   for (const product of products) {
-    await prisma.product.create({
-      data: {
+    await prisma.product.upsert({
+      where: {
+        siteId_slug: {
+          siteId: site.id,
+          slug: product.slug,
+        },
+      },
+      update: {},
+      create: {
         siteId: site.id,
         ...product,
       },
@@ -257,8 +264,15 @@ async function main() {
 
   // 8. Crear página personalizada
   console.log('📝 Creando páginas del sitio...')
-  await prisma.page.create({
-    data: {
+  await prisma.page.upsert({
+    where: {
+      siteId_slug: {
+        siteId: site.id,
+        slug: 'home',
+      },
+    },
+    update: {},
+    create: {
       siteId: site.id,
       slug: 'home',
       title: 'Bienvenido a Demo 3D Printing',
