@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Users, Globe, Palette, BarChart3, LogOut, Building2 } from 'lucide-react'
+import { LayoutDashboard, Package, FileText, Settings, LogOut, Palette, Globe } from 'lucide-react'
 
 const menuItems = [
   {
@@ -11,28 +11,33 @@ const menuItems = [
     icon: LayoutDashboard,
   },
   {
-    name: 'Clientes',
-    href: '/clientes',
-    icon: Users,
-  },
-  {
-    name: 'Sitios Web',
-    href: '/sitios',
+    name: 'Mi Sitio',
+    href: '/site',
     icon: Globe,
   },
   {
-    name: 'Plantillas',
-    href: '/plantillas',
+    name: 'Productos',
+    href: '/products',
+    icon: Package,
+  },
+  {
+    name: 'Páginas',
+    href: '/pages',
+    icon: FileText,
+  },
+  {
+    name: 'Personalizar',
+    href: '/customize',
     icon: Palette,
   },
   {
-    name: 'Analytics',
-    href: '/analytics',
-    icon: BarChart3,
+    name: 'Configuración',
+    href: '/settings',
+    icon: Settings,
   },
 ]
 
-export function Sidebar() {
+export function ClientSidebar() {
   const pathname = usePathname()
 
   return (
@@ -40,15 +45,15 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-gray-800/50">
         <Link href="/dashboard" className="flex items-center space-x-3 group">
-          <div className="p-2 bg-gradient-to-br from-orange-500 to-pink-600 rounded-xl group-hover:scale-110 transition-transform">
-            <Building2 className="w-7 h-7 text-white" strokeWidth={2.5} />
+          <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl group-hover:scale-110 transition-transform">
+            <Globe className="w-7 h-7 text-white" strokeWidth={2.5} />
           </div>
           <div>
-            <h1 className="text-lg font-bold bg-gradient-to-r from-orange-400 to-pink-600 bg-clip-text text-transparent">
-              Admin Panel
+            <h1 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent">
+              Mi Panel
             </h1>
             <p className="text-xs text-gray-500">
-              SaaS Builder v1.0
+              Website Builder
             </p>
           </div>
         </Link>
@@ -66,7 +71,7 @@ export function Sidebar() {
                   href={item.href}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-r from-orange-500 to-pink-600 text-white shadow-lg shadow-orange-500/50 scale-105'
+                      ? 'bg-gradient-to-r from-blue-500 to-cyan-600 text-white shadow-lg shadow-blue-500/50 scale-105'
                       : 'text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-105'
                   }`}
                 >
@@ -81,7 +86,7 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="absolute bottom-0 w-64 p-4 border-t border-gray-800/50">
-        <form action="/api/auth/logout" method="POST">
+        <form action="/api/auth/client/logout" method="POST">
           <button
             type="submit"
             className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl hover:scale-105 transition-all duration-300 border border-red-500/20"
